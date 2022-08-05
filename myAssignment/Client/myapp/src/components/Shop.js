@@ -7,17 +7,42 @@ import shoeOne from "../Assets/Products/ShoeOne.jpg";
 import shoeTwo from "../Assets/Products/ShoeTwo.jpg";
 import shoeThree from "../Assets/Products/ShoeThree.jpg";
 import shoeFour from "../Assets/Products/ShoeFour.jpg";
-import cart from "../Assets/Images/Cart.png"
+import cart from "../Assets/Images/Cart.png";
+import Logo from '../Assets/Images/scribble2.png';
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 const Shop = () => {
-    console.log("Ho");
+
+//=============================================================================
+// Dynamically load favicon
+//=============================================================================
+
+useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = {Logo};
+  }, []);
+
+  const navigate = useNavigate();
+
+  const [userId, setUserId] = useState({
+    activeUser: sessionStorage.getItem('activeUser'),
+});
+
+
+    
     return (
         <div>
              <Helmet>
                 <title>Shop</title>
-                {/* <link rel="icon" href={Logo}/> */}
+                <link rel="icon" href={Logo}/>
             </Helmet>
             <Navigation/>
 

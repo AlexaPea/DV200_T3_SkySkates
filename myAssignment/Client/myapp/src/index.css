@@ -829,8 +829,9 @@ hr{
   width: 49%;
   top: 120px;
   float: left;
-  padding-top: 40px;
-  margin-left: 540px;
+  margin-top: 0px;
+  margin-left:-650px;
+  position: fixed;
 }
 
 .login-text{
@@ -894,3 +895,206 @@ hr{
   background: rgba(0,0,0,0.0);
 }
 
+
+/*=============================================*/
+/*Product Page*/
+
+.productInfo-Head{
+  height: 100vh;
+}
+.customDiv{
+  float: left;
+  width: 10%;
+  height: 100vh;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: 170px;
+}
+.customDiv label{
+  text-align: left;
+  text-transform: uppercase;
+  color: #939393;
+  font-size: 12px;
+  float: left;
+  margin-bottom: 20px
+
+
+}
+
+.customDiv .labelOne{
+  padding-right: 0px;
+}
+
+.customDiv select, .customDiv input {
+  width: 45%;
+  float: left;
+  padding: 5px;
+  margin: 10px;
+  background-color: #F1F1F1;
+  border-color: #939393;
+}
+.productBuyImg{
+  float: left;
+  width: 37%;
+  position: absolute;
+  margin-left: 250px;
+  margin-top: 80px;
+
+}
+.buyImg{
+  width: 100%;
+}
+
+.productBuyInfo{
+  width: 30%;
+  float: right;
+  text-align: left;
+  margin-right: 70px;
+  margin-top: 55px;
+}
+
+.productBuyInfo h3{
+  text-transform: uppercase;
+  color: #b4b4b4;
+  font-weight: 500;
+}
+
+.productBuyInfo h1{
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-top: -10px;
+}
+.productBuyInfo h4{
+  font-size: 20px;
+}
+
+.primaryBtn{
+  color: #F1F1F1;
+  background-color: #F9A03F;
+  border: none;
+  padding: 10px;
+  text-transform: uppercase;
+  width: 200px;
+  cursor: pointer;
+}
+
+.primaryBtn.buy{
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+}
+.productBuyInfo small{
+  text-transform: uppercase;
+  margin-right: 10px;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 12px;
+ 
+  
+
+}
+
+.colorOp{
+  height: 28px;
+  width: 28px;
+  margin: 5px;
+  float: left;
+  border-radius: 100px;
+}
+
+.colorOp.One{
+  background-color: pink;
+}
+
+.colorOp.Two{
+  background-color: rgb(116, 156, 116);
+}
+
+.colorOp.Three{
+  background-color: rgb(140, 225, 236);
+}
+
+/*tabs*/
+
+.furtherInfo-div{
+  width: 100%;
+  height: 100vh;
+}
+.wrapper {
+  max-width: 50rem;
+  width: 100%;
+  margin: 0 auto;
+}
+.tabs {
+  position: relative;
+  margin: 3rem 0;
+  background: #f1f1f1;
+  height: 14.75rem;
+}
+.tabs::before,
+.tabs::after {
+  content: "";
+  display: table;
+}
+.tabs::after {
+  clear: both;
+}
+.tab {
+  float: left;
+}
+.tab-switch {
+  display: none;
+}
+.tab-label {
+  position: relative;
+  display: block;
+  line-height: 2.75em;
+  height: 3em;
+  padding: 0 1.618em;
+  background: #f1f1f1;
+  border-right: 0.125rem solid #f1f1f1;
+  color: #2b2b2b;
+  cursor: pointer;
+  top: 0;
+  transition: all 0.25s;
+}
+.tab-label:hover {
+  top: -0.25rem;
+  transition: top 0.25s;
+}
+.tab-content {
+  height: 12rem;
+  position: absolute;
+  z-index: 1;
+  top: 2.75em;
+  left: 0;
+  padding: 1.618rem;
+  /* background: #fff; */
+  color: #2b2b2b;
+ 
+  opacity: 0;
+  transition: all 0.35s;
+}
+.tab-switch:checked + .tab-label {
+  /* background: #fff; */
+  color: #F9A03F;
+
+  border-bottom: 0.125rem solid #F9A03F;
+  transition: all 0.35s;
+  z-index: 1;
+  top: -0.0625rem;
+}
+.tab-switch:checked + label + .tab-content {
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.35s;
+  
+}
+
+/*Admin Page*/
+
+.header-One{
+  width: 100%;
+  float: left;
+  height: 100vh;
+}

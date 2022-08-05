@@ -49,9 +49,8 @@ useEffect(() => {
         <div>
             
         <Helmet>
-            <title>Home</title>
-            
-            {/* <link rel="icon" href={Logo}/> */}
+            <title>Home</title> 
+            <link rel="icon" href={Logo}/>
          </Helmet>
 
          <Navigation/>

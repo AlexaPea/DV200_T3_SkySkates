@@ -38,7 +38,7 @@ useEffect(() => {
         <Helmet>
             <title>Login</title>
             
-            {/* <link rel="icon" href={Logo}/> */}
+            <link rel="icon" href={Logo}/>
          </Helmet>
 
          <Navigation/>
