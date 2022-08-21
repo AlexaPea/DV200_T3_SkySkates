@@ -11,7 +11,7 @@ const router = express();
 
 //Add product
 router.post('/api/addproduct', (req, res) => {
-    console.log(req.body.availStock[0].variations);
+    // console.log(req.body);
     const newProduct = new productSchema({
         productName: req.body.productName,
         productPrice: req.body.productPrice,
@@ -21,16 +21,7 @@ router.post('/api/addproduct', (req, res) => {
         productImg: req.body.productImg,
         productRating: req.body.productRating,
         veganFriendly: req.body.veganFriendly,
-        inStock: req.body.inStock,
-        availStock: [{
-                size: req.body.availStock.size,
-                variations:{
-                    pink: req.body.availStock.variations.pink,
-                    blue: req.body.availStock.variations.blue,
-                    green: req.body.availStock.variations.green,
-
-                } 
-        }]
+        availStock: req.body.availStock
     });
 
     newProduct.save()

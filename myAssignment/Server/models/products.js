@@ -31,16 +31,10 @@ const productSchema = mongoose.Schema({
     veganFriendly:{
         type: String
     },
-    inStock:{
-        type: Number,
-        required: true
-    },
     availStock:[{
         size: { type: Number,required: true},
         variations: { 
-            pink: { type: Number, required: true},
-            blue: { type: Number, required: true},
-            green: { type: Number, required: true}
+         
         }
     }],
     Date:{

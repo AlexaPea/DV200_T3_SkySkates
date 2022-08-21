@@ -19,7 +19,7 @@ app.use(routes);
 //establish connection
 mongoose.connect(process.env.DB_CONNECTION, (err)=>{
     if(err){
-        console.log("There was an issue.");
+        console.log("There was an issue with connecting to Mongo:." + err);
     }else{
         console.log("Mongo DB Atlas Connection Established");
     }

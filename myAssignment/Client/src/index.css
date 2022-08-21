@@ -9,6 +9,8 @@ body {
   font-family: 'Inter', sans-serif;
   left:0;
   color: #2b2b2b;
+  /* height: 100vh; */
+  /* overflow: hidden;   */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -17,6 +19,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*========================================================*/
+/*Clean Scroll*/
+/*========================================================*/
+/* section{
+  height: 100vh;
+  float: left;
+  scroll-snap-align: start;scroll-behavior: smooth;
+  
+}
+
+.containerScroll{
+  overflow: scroll;
+  height: 100vh;
+  float: left;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+
+} */
+
+
 
 /*========================================================*/
 /*Navigation*/
@@ -34,7 +57,7 @@ li--active a {
   display: inline-block;
   position: relative;
 }
-li:hover a:after,
+.navContainer li:hover a:after,
 li--active a:after {
     content: '';
     position: absolute;
@@ -96,16 +119,16 @@ li--active a:after {
   font-weight: 900;
   font-size: 82px;
   float: left;
-  margin-top: 230px;
+  margin-top: 250px;
   margin-left: 150px;
   
 }
 
 .headerImg img{
   margin-top: 165px;
-  width: 35%;
+  width: 33%;
   float: right;
-  margin-right: 50px;
+  margin-right: 60px;
 }
 
 .physical{
@@ -131,7 +154,7 @@ li--active a:after {
 }
 
 .second-header{
-  width: 100%;
+  width: 109%;
   height: 100vh;
   /* background-color: #2b2b2b; */
   background-image: linear-gradient(rgba(51, 25, 3, 0.3),rgba(51, 25, 3, 0.3));
@@ -172,9 +195,9 @@ li--active a:after {
 
 }
 .third-header{
-  float:left ;
+  /* float:left ;
   width: 100%;
-  height: 100vh;
+  height: 100vh; */
 }
 
 /*===================================================*/
@@ -194,7 +217,7 @@ margin-bottom: 15px;
 }
 
 .image-of-shoe{
-  width: 450px;
+  width: 380px;
   margin-left: 32%;
   position: relative;
   z-index: -2;
@@ -224,8 +247,8 @@ margin-bottom: 15px;
   position: absolute;
   float: left;
   transform: rotate(-90deg);
-  margin-top: 400px;
-  margin-left: 280px;
+  margin-top: 370px;
+  margin-left: 260px;
   font-size: 32px
 }
 
@@ -251,7 +274,8 @@ margin-bottom: 15px;
 
 .info-header{
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  /* height: 100vh; */
   float: left;
   padding-top: 100px;
   
@@ -286,10 +310,10 @@ margin-bottom: 15px;
 }
 
 .third-scribble{
-  width: 700px;
-  height:300px;
+  width: 620px;
+  height:280px;
   margin-top: -70px;
-  margin-left: -170px;
+  margin-left: -115px;
   position: absolute;
 }
 /*================================================*/
@@ -298,24 +322,26 @@ margin-bottom: 15px;
 .fourth-header{
   float: left;
   height: 100vh;
-  width: 100%;
-  /*background-color: #F9A03F;*/
+  width: 115ch;
+  /* background-color: #787878; */
   padding-top: 0px;
   align-content: center;
   text-align: center;
-  margin-top: -308px;
+  margin-top: -35px;
   /* background-image: url(./Assets/Images/shoes.jpg); */
   background-size: cover;
   
  
 }
 
-form{
-   border: 5px solid #2b2b2b;
-   width: 68%;
-   margin-left:220px;
+.fourth-header form{
+   border: 7px solid #2b2b2b;
+   width: 78%;
+   margin-left:120px;
    height: 60%;
    margin-top: 120px;
+   padding-bottom: 10px;
+   background-color: #f1f1f1;
    
 }
 
@@ -370,6 +396,7 @@ footer {
   width: 100%;
   display: inline;
   text-align: left;
+  bottom: 0;
   
 }
 .site-footer
@@ -1093,8 +1120,196 @@ hr{
 
 /*Admin Page*/
 
-.header-One{
+.header-One.admin{
   width: 100%;
   float: left;
   height: 100vh;
+
 }
+
+
+
+/*add products*/
+
+.add-products form{
+  width: 70%;
+  /* height: 500px; */
+  margin-top: -20px;
+  margin-left: 150px;
+  padding-bottom: 10px;
+  background-color: #f1f1f1;
+  border: 7px solid #2b2b2b;
+  float: left;
+  padding: 30px;
+  position: absolute;
+  margin-top: 15px;
+  visibility: collapse;
+
+
+}
+
+.addFormScrib{
+  position: absolute;
+  width: 500px;
+  height: 100px;
+  margin-top: -12px;
+  margin-left: -250px;
+}
+
+.close{
+  position: absolute;
+  margin-left: 350px;
+}
+
+.close:hover{
+  color: #F9A03F;
+}
+
+.col-One{
+  width: 50%;
+  float: left;
+}
+.col-Two{
+  width: 30%;
+  float: left;
+  margin-left: 50px;
+}
+
+/* .contain-products{
+  width: 60%;
+  float: left;
+  background-color: #2b2b2b;
+  height: 100vh;
+} */
+
+
+
+
+
+.add-products label {
+
+  font-weight: bold;
+  width:100%;
+  float: left;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+
+}
+
+.add-products input, textarea{
+  width: 100%;
+  height: 35px;
+  border: none;
+  /* margin-left: 25%; */
+  padding: 5px;
+  padding-left: 15px;
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+
+}
+
+.add-products .color-option{
+  float: left;
+  width: 80px;
+  margin: 5px;
+}
+
+.add-products .qty-option{
+  float: left;
+  width: 80px;
+  margin: 5px;
+}
+.add-products  .option-label{
+  width: 500px;
+  float: left;
+  text-align: left;
+  
+}
+
+.col-Two h5{
+  padding: 2px;
+  margin: 0;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+textarea{
+  width: 413px;
+  border: none;
+  height:180px;
+  margin-top: 10px;
+}
+
+.optionList{
+  width: 500px;
+}
+
+
+.add-products h4{
+  text-align: left;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.add-products .half{
+  width: 42%;
+  margin-right: 10px;
+}
+
+.add-products .half.one{
+  width: 160px;
+  margin-right: 10px;
+}
+
+.add-products .half.check{
+  height: 10px;
+}
+
+.vegan{
+  width: 50px;
+}
+
+.vegan{
+  /* width: 50px; */
+  margin: 0;
+  margin-top: 19px;
+  margin-left: 10px;
+}
+.add-products input[type="checkbox"] { 
+  width: 22px;
+   margin-left: -190px;
+   border: none;
+   outline: none;
+   padding: 0;
+   border-radius: 0;
+   margin-top: -55px;
+   }
+
+.add-products h1{
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
+
+.add-products h3{
+  margin-bottom: 5px;
+  margin-top: -0px;
+}
+
+.add-products .primary-btn{
+  color: #f1f1f1;
+  background-color: #2b2b2b;
+  border: none;
+  padding: 12px;
+  width: 320px;
+  margin-top: 10px;
+  margin-left: 15px
+}
+
+.add-products .primary-btn:hover{
+  cursor: pointer;
+  background-color: #F9A03F;
+}
+
