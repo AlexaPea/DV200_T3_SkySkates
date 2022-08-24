@@ -6,6 +6,8 @@ import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscou
 import Logo from '../Assets/Images/scribble2.png';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import { UilArrowLeft } from '@iconscout/react-unicons'
 
 const ProductPage = () => {
 
@@ -23,11 +25,65 @@ useEffect(() => {
     link.href = {Logo};
   }, []);
 
-  const navigate = useNavigate();
 
-  const [userId, setUserId] = useState({
-    activeUser: sessionStorage.getItem('activeUser'),
+
+//==============================================================================
+//
+
+const navigate = useNavigate();
+
+let productId = sessionStorage.getItem("productId");
+console.log(productId);
+
+const [imgUrl, setImgUrl] = useState();
+
+const [productData, setProductData] = useState({
+    productName: "",
+    productPrice: "",
+    productDescription: "",
+    productCollection: "",
+    productDiscount: "",
+    productRating: "",
+    veganFriendly: "",
+    colorOne: "",
+    colorTwo: "",
+    colorThree: "",
+    // valOne: "",
+    // valTwo: "",
+    // valThree: "",
+    image:""
 });
+
+const backHome = () =>{
+    sessionStorage.clear();
+    navigate("/");
+}
+
+useEffect(()=>{
+    Axios.get('http://localhost:5000/api/oneproduct/' + productId)
+    .then(res => {
+        let data = res.data;
+        setProductData({
+      
+            productName: data.productName,
+            productPrice: data.productPrice,
+            productDescription: data.productDescription,
+            productCollection: data.productCollection,
+            productDiscount: data.productDiscount,
+            productRating: data.productRating,
+            veganFriendly: data.veganFriendly,
+            colorOne: data.colorOne,
+            colorTwo: data.colorTwo,
+            colorThree: data.colorThree,
+            // valOne: "",
+            // valTwo: "",
+            // valThree: "",
+            
+        })
+        let URL = 'http://localhost:5000/productImages/' + data.image;
+        setImgUrl(URL);
+    })
+}, []);
 
 
     return (
@@ -37,6 +93,8 @@ useEffect(() => {
                 <link rel="icon" href={Logo}/>
             </Helmet>
             <Navigation/>
+
+            <UilArrowLeft onClick={backHome} className="backArrow" size="35"/>
 
           
 
@@ -48,7 +106,6 @@ useEffect(() => {
                         <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
-                        <option value="9">9</option>
                     </select>
                 </label>
                 <br/>
@@ -71,14 +128,14 @@ useEffect(() => {
             </div>
             
             <div className='productBuyImg'>
-                <img src={shoeOne} className="buyImg"/>
+               <img src={imgUrl} className="buyImg"/>
             </div>
 
             <div className='productBuyInfo'>
-                <h3>IMPLALA premium</h3>
-                <h1>Implala Skates</h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <h4>R 2500</h4>
+                <h3>{productData.productCollection}</h3>
+                <h1>{productData.productName}</h1>
+                <p>{productData.productDescription}</p>
+                <h4>R {productData.productPrice}</h4>
                 <button className='primaryBtn buy'>Add to cart</button>
                 <br/>
                 <small>size chart</small>

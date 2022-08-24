@@ -6,9 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import scribble3 from '../Assets/Images/scribble3.png';
 import { UilTimes } from '@iconscout/react-unicons'
+import AdminProductCard from './AdminProductCard';
+import Axios from 'axios';
+import { UilPlus } from '@iconscout/react-unicons';
+import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
+import AddProduct from './AddProduct';
+import guySkates from '../Assets/Images/guySkates.png'
 
 
-const Admin = () => {
+const Admin = (props) => {
 
 //=============================================================================
 // Dynamically load favicon
@@ -30,100 +36,123 @@ useEffect(() => {
     activeUser: sessionStorage.getItem('activeUser'),
 });
 
+//read products
+const [products, setProducts] = useState();
+const [updateProducts, setUpdateProducts] = useState();
+
+useEffect(()=>{
+
+  Axios.get('http://localhost:5000/api/readproducts')
+  .then(res =>{
+
+    let productData = res.data;
+    console.log(productData);
+    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
+    setProducts(renderProducts);
+    setUpdateProducts(false);
+
+  })
+  .catch(err => console.log(err));
+
+},[updateProducts]);
+
+//==========================================================
+//add product modal
+
+    // Handle Modal
+    const [modalArea, setModal] = useState();
+
+    const add = (event) => {
+
+        setModal(<AddProduct upRender={props.rerender} rerender={setModal}/>)
+        
+
+    };
+
+
+ 
+
     return (
-        <div>
+        <div className='adminPage'>
             <Helmet>
                 <title>Admin</title>
                 <link rel="icon" href={Logo}/>
             </Helmet>
             <Navigation/>
 
+            <div className='addBtn'>
+                <button onClick={add}><UilPlus/></button>
+            </div>
+
             <div className='header-One admin'>
+                <img src={guySkates} className="guy-header"/>
+                <div className='admin-text'>
                 <h1>Hey Boss!</h1>
-            </div>
-            <div className='contain-products'>
-
-            </div>
-            <div className='add-products'>
-                <form>
-                    <img src={scribble3} className="addFormScrib"/>
-                    <UilTimes size="45" className="close"/>
-                    
-                    <h1>Add New Skate</h1>
-                    <h3>For more to love!</h3>
-
-                    <div className='col-One'>
-                    <h4>Item Information</h4>
-                            
-                                <input type="text" placeholder='Product Name' name="skate-name"/>
-                            
-
-                         
-                                <input type="text" placeholder='Collection name' name="skate-collection"/>
-                         
-
-                           
-                                <textarea placeholder='Description'/>
-                           
-
-
-                         
-                                <input type="number" name="skate-price" placeholder='Price' className ="half one"/>
-                          
-
-                      
-                                <input type="number" placeholder='Rating' className ="half" name="skate-rating"/>
-                          
-
-                                <h5 className='vegan'>Vegan?</h5>
-                            <input type="checkbox" placeholder='Rating' className ="css-checkbox" value="true" name="skate-rating"/>
-                            
-                    </div>
-                    <div className='col-Two'>
-                            <h4>Available Stock</h4>
-
-                            <h5 className='option-label'>Colors</h5>
-                            <div className='optionList'>
-                                <input className='color-option' type="text" name="skate-color-1"/>
-                                <input className='color-option' type="text" name="skate-color-2"/>
-                                <input className='color-option' type="text" name="skate-color-3"/>
-                          </div>
-
-                                <h5 className='option-label'>Size 5</h5>
-                                <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
-                                </div>
-
-                                <h5 className='option-label'>Size 6</h5>
-                                <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
-                         </div>
-
-                                <h5 className='option-label'>Size 7</h5>
-                                <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
-                                </div>
-
-                                <h5 className='option-label'>Size 8</h5>
-                                <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
-                                </div>
-                         
-
-
-                    </div>
-                    <button className='primary-btn'>Add Skates!</button>
-                </form>
+                <h3>Need to make some changes, make space for the new and improved? We can help!</h3>
+                <a href='#products'><button className='primary-btn'>Go To Products</button></a>
+                </div>
                 
             </div>
+            <div className='contain-products' id="products">
+                {products}
+
+            </div>
+            {modalArea}
+           
+
+
+
+            <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="row-long">
+            <h6>About</h6>
+            <p class="text-justify">SKY SKATES is for everyone. Our mission is to help support a positive and encouraging community for skaters of all levels that is welcoming and celebrates diversity in all walks of life.</p>
+          </div>
+
+          <div class="rowOne">
+            <h6>Categories</h6>
+            <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">RollerSkates</a></li>
+              <li><a href="http://scanfcode.com/category/front-end-development/">Competitions</a></li>
+              <li><a href="http://scanfcode.com/category/back-end-development/">Chat To Teams</a></li>
+              <li><a href="http://scanfcode.com/category/java-programming-language/">MeetUps</a></li>
+ 
+            </ul>
+          </div>
+
+          <div class="rowOne">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="http://scanfcode.com/about/">About Us</a></li>
+              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="extend">
+            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+         <a href="#"> SKY SKATES</a>.
+            </p>
+          </div>
+
+          <div class="extend">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><UilFacebookF/></a></li>
+              <li><a class="twitter" href="#"><UilTwitter/></a></li>
+              <li><a class="dribbble" href="#"><UilWhatsapp/></a></li>
+              <li><a class="linkedin" href="#"><UilInstagram/></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+</footer>
             
         </div>
     );

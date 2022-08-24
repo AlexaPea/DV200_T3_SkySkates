@@ -1,6 +1,7 @@
 //import dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+const cors= require('cors');
 
 //import modules
 const routes = require('./routes');
@@ -9,6 +10,9 @@ const routes = require('./routes');
 require('dotenv/config');
 
 const app = express();
+app.use(cors ({
+    origin: 'http://localhost:3000'
+}));
 
 //middleware to use body parse function
 app.use(express.json());

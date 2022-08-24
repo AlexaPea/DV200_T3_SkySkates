@@ -33,7 +33,7 @@ useEffect(() => {
 
 
     return (
-        <div>
+        <div className='loginPage'>
 
         <Helmet>
             <title>Login</title>

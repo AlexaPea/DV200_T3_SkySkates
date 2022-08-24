@@ -8,10 +8,12 @@ import shoeTwo from "../Assets/Products/ShoeTwo.jpg";
 import shoeThree from "../Assets/Products/ShoeThree.jpg";
 import shoeFour from "../Assets/Products/ShoeFour.jpg";
 import cart from "../Assets/Images/Cart.png";
+import ProductCard from './ProductCard';
 import Logo from '../Assets/Images/scribble2.png';
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 
 const Shop = () => {
@@ -35,6 +37,31 @@ useEffect(() => {
   const [userId, setUserId] = useState({
     activeUser: sessionStorage.getItem('activeUser'),
 });
+
+//=============================================
+//Read products
+
+//read products
+const [products, setProducts] = useState();
+const [updateProducts, setUpdateProducts] = useState();
+
+useEffect(()=>{
+
+  Axios.get('http://localhost:5000/api/readproducts')
+  .then(res =>{
+
+    let productData = res.data;
+    console.log(productData);
+    let renderProducts = productData.map((item) => <ProductCard key={item._id} productId={item._id} productName={item.productName} productPrice={item.productPrice}  editRender={setUpdateProducts}/>)
+    setProducts(renderProducts);
+    setUpdateProducts(false);
+
+  })
+  .catch(err => console.log(err));
+
+},[updateProducts]);
+
+
 
 
     
@@ -61,72 +88,7 @@ useEffect(() => {
             </div>
 
             <div className='headerThree'>
-                <div className='productCard'>
-                    <div className='hoverOption'>
-                        <div className='buy'>
-                            <img src={cart} className="cart"/>
-                        </div>
-                    </div>
-                    <div className='productImg'>
-                        <img src={shoeOne} className="cardShoe"/>
-                    </div>
-                    <div className='shoeName'>
-                        <h4>Impala First Green</h4>
-                    </div>
-                    <div className='shoePrice'>
-                        <h6>R2500</h6>
-                    </div>
-                </div>
-
-                <div className='productCard'>
-                <div className='hoverOption'>
-                        <div className='buy'>
-                            <img src={cart} className="cart"/>
-                        </div>
-                    </div>
-                    <div className='productImg'>
-                        <img src={shoeTwo} className="cardShoe"/>
-                    </div>
-                    <div className='shoeName'>
-                        <h4>Impala First Green</h4>
-                    </div>
-                    <div className='shoePrice'>
-                        <h6>R2500</h6>
-                    </div>
-                </div>
-
-                <div className='productCard'>
-                <div className='hoverOption'>
-                        <div className='buy'>
-                            <img src={cart} className="cart"/>
-                        </div>
-                    </div>
-                    <div className='productImg'>
-                        <img src={shoeThree} className="cardShoe"/>
-                    </div>
-                    <div className='shoeName'>
-                        <h4>Impala First Green</h4>
-                    </div>
-                    <div className='shoePrice'>
-                        <h6>R2500</h6>
-                    </div>
-                </div>
-                <div className='productCard'>
-                <div className='hoverOption'>
-                        <div className='buy'>
-                            <img src={cart} className="cart"/>
-                        </div>
-                    </div>
-                    <div className='productImg'>
-                        <img src={shoeFour} className="cardShoe"/>
-                    </div>
-                    <div className='shoeName'>
-                        <h4>Impala First Green</h4>
-                    </div>
-                    <div className='shoePrice'>
-                        <h6>R2500</h6>
-                    </div>
-                </div>
+                {products}
             </div>
 
 
