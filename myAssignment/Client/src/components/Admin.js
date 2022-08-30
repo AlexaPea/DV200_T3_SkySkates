@@ -97,6 +97,12 @@ useEffect(()=>{
                 {products}
 
             </div>
+
+            <div className='process-orders'>
+              <h1>Orders in Process</h1>
+                {/* {orders} */}
+
+            </div>
             {modalArea}
            
 

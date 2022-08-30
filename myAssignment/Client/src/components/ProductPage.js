@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import shoeOne from "../Assets/Products/ShoeOne.jpg";
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import Logo from '../Assets/Images/scribble2.png';
+import success from '../Assets/Images/success.png';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -48,6 +49,7 @@ const [productData, setProductData] = useState({
     colorOne: "",
     colorTwo: "",
     colorThree: "",
+    size: [],
     // valOne: "",
     // valTwo: "",
     // valThree: "",
@@ -56,7 +58,7 @@ const [productData, setProductData] = useState({
 
 const backHome = () =>{
     sessionStorage.clear();
-    navigate("/");
+    navigate("/Shop");
 }
 
 useEffect(()=>{
@@ -65,9 +67,17 @@ useEffect(()=>{
         let data = res.data;
         // console.log(data);
         var keys = Object.keys(data.availStock[0].variations);
-        // console.log(keys);
-        // console.log(keys[0]);
-        
+
+        //get sizes
+
+        let sizes=[];
+        for(let i=0; i<data.availStock.length; i++){
+
+          sizes.push(data.availStock[i].size)
+        }
+       
+
+
         setProductData({
       
             productName: data.productName,
@@ -80,6 +90,7 @@ useEffect(()=>{
             colorOne: keys[0],
             colorTwo: keys[1],
             colorThree: keys[2],
+            size: sizes,
             // valOne: data,
             // valTwo: "",
             // valThree: "",
@@ -89,6 +100,50 @@ useEffect(()=>{
         setImgUrl(URL);
     })
 }, []);
+
+
+//====================================================================================
+//Place Order
+let formVals = ["productName", "price", "quantity", "productColor", "size", "clientEmail"];
+
+const [formValues, setFormValues] = useState(formVals);
+
+const getValues = (e) =>{
+const { name, value } = e.target;
+setFormValues({ ...formValues, [name]: value });
+}
+
+const addOrder = (e) => {
+    e.preventDefault(); 
+    console.log("click");
+
+    let payload = {
+      productName:productData.productName,
+        price: +productData.productPrice,
+        clientEmail: sessionStorage.getItem("user"),
+        quantity: +formValues['quantity'],
+        productColour: formValues['productColor'],
+        size: +formValues['size']
+    }
+
+    console.log(payload);
+
+    Axios.post('http://localhost:5000/api/addorder', payload)
+    .then((res)=> {
+        if(res){
+        console.log("Order Successful");
+        // navigate("/Home"); 
+
+        //make a pop up modal
+
+
+        }
+    })
+    .catch(function (error) {
+        console.log("Error is:" + error);
+    });
+} 
+
 
 
     return (
@@ -101,19 +156,31 @@ useEffect(()=>{
 
             <UilArrowLeft onClick={backHome} className="backArrow" size="35"/>
 
+{/* <div className='order-success'>
+      <div className='opacityBg'>
+              <div className='success-content'>
+                <h1>Whoop Whoop!</h1>
+                <h3>Your order has been placed!</h3>
+                <img src={success} className="successImg"/>
+                <button className='primary-btn'>Keep Shopping!</button>
+                <button>Go to cart</button>
+
+              </div>
+        </div>
+  </div> */}
           
 
 <div className='productInfo-Head'>
-  <form>
+  <form onSubmit={addOrder}>
 
 
             <div className='customDiv'>
                 <label className='labelOne'> Select Size (US)
-                    <select>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
+                    <select name="size" onChange={getValues}>
+                        <option value="5">{productData.size[0]}</option>
+                        <option value="6">{productData.size[1]}</option>
+                        <option value="7">{productData.size[2]}</option>
+                        <option value="8">{productData.size[3]}</option>
                     </select>
                 </label>
                 <br/>
@@ -121,7 +188,7 @@ useEffect(()=>{
                 <label> Select Colour
                 <div class="color-choices">
                     <div>
-                      <input id="choice-1" name="choice" type="radio" value={productData.colorOne}
+                      <input id="choice-1" name="productColor" type="radio" value={productData.colorOne} onClick={getValues}
                       style={{
                       backgroundColor: productData.colorOne,
                       appearance: 'none',
@@ -135,7 +202,7 @@ useEffect(()=>{
                     </div>
                     
                     <div>
-                      <input id="choice-2" name="choice" type="radio" value={productData.colorTwo}
+                      <input id="choice-2" name="productColor" type="radio" value={productData.colorTwo} onClick={getValues}
                        style={{
                         backgroundColor:productData.colorTwo,
                         appearance: 'none',
@@ -149,7 +216,7 @@ useEffect(()=>{
                     </div>
                     
                     <div>
-                      <input id="choice-3" name="choice" type="radio" value={productData.colorThree}
+                      <input id="choice-3" name="productColor" type="radio" value={productData.colorThree} onClick={getValues}
                        style={{
                         backgroundColor:productData.colorThree,
                         appearance: 'none',
@@ -166,7 +233,7 @@ useEffect(()=>{
                 </label>
                 <br/>
                 <label> Quantity
-                    <select>
+                    <select name="quantity" onChange={getValues}>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -174,7 +241,7 @@ useEffect(()=>{
                     </select>
                 </label>
             </div>
-          </form>
+         
             
             <div className='productBuyImg'>
                <img src={imgUrl} className="buyImg"/>
@@ -185,12 +252,12 @@ useEffect(()=>{
                 <h1>{productData.productName}</h1>
                 <p>{productData.productDescription}</p>
                 <h4>R {productData.productPrice}</h4>
-                <button className='primaryBtn buy'>Add to cart</button>
+                <button type="submit" className='primaryBtn buy'>Add to cart</button>
                 <br/>
                 <small>size chart</small>
                 <small>product measurements</small>
             </div>
-
+            </form>
             </div>
         {/*  ProductInfo Div */}
 

@@ -87,17 +87,18 @@ router.post('/api/addproduct', UploadProductImage.single('image') , (req, res) =
 
 
 //add order
-router.post('/api/addOrder', (req, res) => {
+router.post('/api/addorder', (req, res) => {
 
-    const newProduct = new orderSchema({
+    const newOrder = new orderSchema({
         productName: req.body.productName,
-        quantity: req.body.quantity,
+        price: +req.body.price,
+        quantity: +req.body.quantity,
         productColour: req.body.productColour,
         clientEmail: req.body.clientEmail,
-        size: req.body.size
+        size: +req.body.size
     });
 
-    newProduct.save()
+    newOrder.save()
     .then(item => {
         res.json(item);
     })
@@ -114,6 +115,13 @@ router.get('/api/readproducts', async(req, res) => {
     res.json(findProducts);
 });
 
+// read all orders
+// the get method requires a asynchronous connection to the database
+router.get('/api/readorders', async(req, res) => {
+    const findOrders = await orderSchema.find();
+    res.json(findOrders);
+});
+
 //delete product
 //delete method
 router.delete('/api/deleteproduct/:id', async(req,res) =>{
@@ -121,6 +129,15 @@ router.delete('/api/deleteproduct/:id', async(req,res) =>{
     res.json(findProduct); 
 
 });
+
+//delete product
+//delete method
+router.delete('/api/deleteorder/:id', async(req,res) =>{
+    const findProduct = await orderSchema.remove({_id: req.params.id});
+    res.json(findProduct); 
+
+});
+
 
 //oneProduct
 router.get('/api/oneproduct/:id', async (req, res) =>{

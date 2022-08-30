@@ -47,9 +47,18 @@ code {
 
 .navContainer{
   width: 100%;
-  height: 100px;
+  height: 150px;
   display: inline;
   top: 0;
+}
+
+.icon.logout{
+  color: #f1f1f1;
+  background-color: #2b2b2b;
+  padding: 10px;
+  width: 100px;
+  border-radius: 20px;
+  margin-top: -10px;
 }
 
 .navContainer li:hover a,
@@ -70,33 +79,43 @@ li--active a:after {
     background-position: 1px 20px;
     background-repeat: no-repeat;
 }
+
+.navContainer li .icon.logout:hover,
+li--active a:after {
+    background-color: #F9A03F;
+}
 .navContainer .active button{
   color: #F9A03F;
   font-weight: 700;
 }
 
 .list{
-  padding-left: 500px;
+  padding-left: -100px;
 }
 
 .navContainer li{
   float: left;
   list-style: none;
   padding: 20px;
+  background-color: none;
+  background: none;
 }
 
 .navContainer button{
   background-color: none;
+  background: none;
   outline: none;
   border: none;
+
 }
 
 .logo{
   font-family: 'Inter', sans-serif;
   font-weight: 900;
+
   float: left;
-  margin-right: 530px;
-  font-size: 22px;
+  margin-right: 390px;
+  font-size: 32px;
 }
 
 .first-header{
@@ -107,34 +126,64 @@ li--active a:after {
   left: 0;
   margin-left: -10px;
   position: relative;
-  margin-top: -80px;
-  background-image: url(./Assets/Images/headerScribble.png);
+  margin-top: -120px;
+  background-image: url(./Assets/Images/FinalHeader.png);
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -2;
+  background-color: #f1f1f1;
   
 }
 
-.first-header h1{
+/* .first-header h1{
   font-weight: 900;
   font-size: 82px;
   float: left;
   margin-top: 250px;
   margin-left: 150px;
   
+} */
+
+.first-header h1{
+  font-weight: 900;
+  font-size: 76px;
+  float: left;
+  margin-top: 360px;
+  margin-left: 155px;
+ 
+
+  
 }
 
 .headerImg img{
-  margin-top: 165px;
-  width: 33%;
+  margin-top: 159px;
+  width: 65%;
   float: right;
-  margin-right: 60px;
+  margin-left: -210px;
+  margin-right: 30px;
 }
 
-.physical{
+hr{
+  color: #2b2b2b;
+  background-color: #2b2b2b;
+  outline: none;
+  border: 0.5px;
+  height: 0.5px;
+  margin-top: 520px;
+}
+
+/* .physical{
   background-color: #F9A03F;
   width: 100%;
   padding: 0 5px;
+  
+} */
+
+.physical{
+
+  width: 100%;
+  padding: 0 10px;
+  padding-top: 15px;
   
 }
 
@@ -194,12 +243,7 @@ li--active a:after {
   height: 900px;
 
 }
-.third-header{
-  /* float:left ;
-  width: 100%;
-  height: 100vh; */
-}
-
+/* 
 /*===================================================*/
 /*Slider*/
 
@@ -614,22 +658,22 @@ hr{
   font-size: 82px;
   float: left;
   margin-top: 185px;
-  margin-left: -660px;
+  margin-left: 95px;
   text-align: left;
   z-index: 1;
 }
 
 .girlGroup{
-  width: 68%;
+  width: 78%;
   float: left;
   position: absolute;
-  margin-left: -780px;
-  margin-top: 60px;
+  margin-left: -390px;
+  margin-top: -8px;
   z-index: -2;
 }
 
 .highlight{
-  background-color: #F9A03F;
+  /* background-color: #F9A03F; */
   z-index: 2;
   padding: 0 5px;
   
@@ -638,8 +682,8 @@ hr{
 .headerTwo{
   width: 100%;
   float: left;
-  height: 35vh;
-  margin-top: 35px;
+  height: 40vh;
+  margin-top: -108px;
   position: absolute;
   z-index: -3;
   /* background-image: linear-gradient(rgba(51, 25, 3, 0.3),rgba(51, 25, 3, 0.3),(url(./Assets/Images/girls.jpg))); */
@@ -658,7 +702,7 @@ hr{
   font-size: 82px;
   float: left;
   margin-left: 20%;
-  margin-top: 60px;
+  margin-top: 90px;
   z-index: 1;
 }
 
@@ -712,7 +756,7 @@ color: #F9A03F;
   margin-top: -20px;
 }
 
-.adminCard .primary-btn, .admin-text .primary-btn{
+.adminCard .primary-btn, .admin-text .primary-btn, .success-content .primary-btn{
   background-color: #2b2b2b;
   color: #f1f1f1;
   padding: 10px;
@@ -794,6 +838,22 @@ color: #F9A03F;
   float: left;
   width: 100%;
   height: 80vh;
+}
+
+.headerFour .header-text{
+  margin-top: -90px;
+  width: 50%;
+}
+
+.headerFour .header-text h1{
+  margin-bottom:30px
+}
+
+.headerFour .header-text p{
+  margin-top: 250px;
+  margin-left: 100px;
+  width: 70%;
+  text-align: left;
 }
 
 /*=============================*/
@@ -907,8 +967,8 @@ color: #F9A03F;
   width: 49%;
   top: 120px;
   float: left;
-  margin-top: 5px;
-  margin-left:-650px;
+  margin-top: -35px;
+  margin-left:-330px;
   position: fixed;
 }
 
@@ -917,8 +977,8 @@ color: #F9A03F;
   height:600px;
   float: left;
   border: none;
-  margin-top: 130px;
-  margin-left:-1000px ;
+  margin-top: 80px;
+  margin-left:150px ;
   text-align: left;
 }
 
@@ -1405,28 +1465,28 @@ textarea{
 /*admin header*/
 
 .guy-header{
-  width: 1110px;
+  width: 890px;
   float: left;
-  margin-left: -70px;
-  margin-top: 40px;
+  margin-left: 270px;
+  margin-top: 70px;
 }
 
 .admin-text{
   float: left;
-  margin-top: -540px;
-  margin-left: 610px;
+  margin-top: -380px;
+  margin-left: 110px;
   text-align: left;
 }
 
 .admin-text h1{
-  font-size: 58px;
+  font-size: 62px;
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 
 .admin-text h3{
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   width: 350px;
   margin-top: 0px;
@@ -1515,4 +1575,72 @@ form input[type="radio"]:checked + label:before {
   display: inline;
   width: 300px;
   padding-top: 5px;
+}
+
+.colorBlock{
+  width: 30px;
+  height:30px;
+  border-radius: 50px;
+  margin: 0 auto;
+  border: 1px solid #bbbbbb;
+}
+
+.deleteOrder:hover{
+  cursor: pointer;
+  color: #F9A03F;
+}
+
+.decor1{
+  position: absolute;
+
+  margin-top: 320px;
+  margin-left: -15px;
+}
+
+.decor2{
+  position: absolute;
+  margin-top: 115px;
+  margin-left: 420px;
+}
+
+.headerFour .header-img img{
+  width: 800px;
+  margin-left: -250px;
+  margin-top: 70px;
+  float: left;
+}
+
+.underline{
+  position: absolute;
+  width: 350px;
+  margin-left: -800px;
+  margin-top: 230px;
+}
+
+.success-content{
+  width: 350px;
+  height: 400px;
+  background-color: #f1f1f1;
+  margin-left: 35%;
+  z-index:10;
+}
+.success-content h1{
+padding-top: 50px;
+z-index: 5;
+position: absolute;
+}
+
+
+.successImg{
+  width: 350px;
+  position: absolute;
+  margin-top: -153px;
+  margin-left: -25px;
+  z-index: 2;
+}
+
+.success-content .primary-btn{
+  width: 80%;
+  margin: 10px;
+  margin-top: 150px;
 }

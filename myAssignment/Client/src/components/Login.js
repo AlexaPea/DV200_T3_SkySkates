@@ -63,6 +63,7 @@ const loginUser = (e) => {
         if(res.data.user){
           alert("welcome user");
           sessionStorage.setItem('token', res.data.user);
+          sessionStorage.setItem('user', formValues['username']);
           navigate("/Home");
         }else{
           alert("Not happening")
@@ -92,7 +93,7 @@ const toRegister = () =>{
             <link rel="icon" href={Logo}/>
          </Helmet>
 
-         <Navigation/>
+         {/* <Navigation/> */}
             <div className='login-text'>
                 <form onSubmit={loginUser}>
                     <h1>SKY SKATES.</h1>

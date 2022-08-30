@@ -14,6 +14,7 @@ import shoeOne from "../Assets/Products/ShoeOne.jpg";
 import shoeTwo from "../Assets/Products/ShoeTwo.jpg";
 import shoeThree from "../Assets/Products/ShoeThree.jpg";
 import skateGirl from "../Assets/Images/skateGirl.jpg";
+import pattern from "../Assets/Images/pattern2.png";
 import shoes from "../Assets/Images/shoes.jpg";
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import Logo from '../Assets/Images/scribble2.png';
@@ -88,8 +89,19 @@ useEffect(()=>{
 
               <section className='One'>
 
+                          {/* <div className='first-header original'>
 
-                      <div className='first-header'>
+                                      
+            <h1>LET'S GET <div className="physical">PHYSICAL.</div></h1>
+
+            <div className='headerImg pattern'>
+                              <img src={pattern}></img>
+                          </div>
+
+            </div> */}
+
+
+                      <div className='first-header original'>
 
                           
                           <h1>LET'S GET <div className="physical">PHYSICAL.</div></h1>

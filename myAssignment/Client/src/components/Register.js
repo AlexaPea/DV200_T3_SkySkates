@@ -80,8 +80,8 @@ const toLogin = () =>{
             <title>Register</title>
             <link rel="icon" href={Logo}/>
          </Helmet>
-
-         <Navigation/>
+{/* 
+         <Navigation/> */}
             <div className='login-text'>
                 <form onSubmit={addNewUser}>
                     <h1>SKY SKATES.</h1>

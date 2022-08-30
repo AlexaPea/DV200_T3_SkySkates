@@ -2,12 +2,16 @@ import React from 'react';
 import Navigation from './Navigation';
 import Helmet from "react-helmet";
 import girlGroup from "../Assets/Images/girlGroup.png";
+import lines1 from "../Assets/Images/lines1.png";
+import lines2 from "../Assets/Images/lines2.png";
 import girls from "../Assets/Images/girls.jpg";
 import shoeOne from "../Assets/Products/ShoeOne.jpg";
 import shoeTwo from "../Assets/Products/ShoeTwo.jpg";
 import shoeThree from "../Assets/Products/ShoeThree.jpg";
 import shoeFour from "../Assets/Products/ShoeFour.jpg";
 import cart from "../Assets/Images/Cart.png";
+import qr from "../Assets/Images/qr.png";
+import underline from "../Assets/Images/underline.png";
 import ProductCard from './ProductCard';
 import Logo from '../Assets/Images/scribble2.png';
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
@@ -75,6 +79,8 @@ useEffect(()=>{
 
             <div className='headerOne'>
                 <div className='header-text'>
+                  <div className='decor1'><img src={lines1}/></div>
+                  <div className='decor2'><img src={lines2}/></div>
                      <h1>Lets get <br/> <div className="highlight"> shopping. </div></h1>
                 </div>
 
@@ -95,6 +101,13 @@ useEffect(()=>{
             <div className='headerFour'>
                 <div className='header-text'>
                      <h1>Like What You See?</h1>
+                     <p>Be sure to not miss out! Scan the QR code to be directed to our instagram - where we post all the latest releases, awesome pics of you in our products and more!</p>
+                </div>
+
+                <img src={underline} className="underline"/>
+
+                <div className='header-img'>
+                    <img src={qr} className="qr-code"/>
                 </div>
 
                 

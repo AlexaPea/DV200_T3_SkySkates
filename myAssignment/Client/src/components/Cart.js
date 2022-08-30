@@ -8,7 +8,8 @@ import scribble5 from '../Assets/Images/scribble5.png';
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
+import Axios from 'axios';
+import Orders from './Orders';
 
 const Cart = () => {
 
@@ -32,6 +33,33 @@ const [userId, setUserId] = useState({
   activeUser: sessionStorage.getItem('activeUser'),
 });
 
+
+//=================================
+//=============================================
+//Read orders
+
+
+const [orders, setOrders] = useState();
+const [updateOrders, setUpdateOrders] = useState();
+
+useEffect(()=>{
+
+  Axios.get('http://localhost:5000/api/readorders')
+  .then(res =>{
+
+    let productData = res.data;
+    console.log(productData);
+    // if(productData.clientEmail === sessionStorage.getItem("user")){}
+    let renderOrders = productData.map((item) => <Orders key={item._id} orderId={item._id} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
+    setOrders(renderOrders);
+    setUpdateOrders(false);
+
+  })
+  .catch(err => console.log(err));
+
+},[updateOrders]);
+
+
     return (
         <div>
              <Helmet>
@@ -53,19 +81,13 @@ const [userId, setUserId] = useState({
             <table>
                 <tr>
                     <th>ITEM</th>
+                    <th>COLOUR</th>
                     <th>UNIT PRICE</th>
                     <th>QUANTITY</th>
                     <th>FINAL PRICE</th>
                     <th>REMOVE</th>
                 </tr>
-
-                <tr>
-                    <td className='picRow'><img src={shoeOne} className="tableShoe"/></td>
-                    <td>R2500</td>
-                    <td>2</td>
-                    <td>R5000</td>
-                    <td><UilTimes/></td>
-                </tr>
+                {orders}
             </table>
                
         </div>
