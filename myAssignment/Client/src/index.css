@@ -1472,3 +1472,47 @@ textarea{
   width: 200px;
   height: 200px;
 }
+
+
+form input[type="radio"]:checked {
+  background-color: #93e026;
+
+}
+
+form input[type="radio"] {
+  display: none;
+
+
+}
+form input[type="radio"]+label:before {
+  content: "";
+  /* create custom radiobutton appearance */
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  padding: 6px;
+  /* margin-right: 3px; */
+  /* background-color only for content */
+  background-clip: content-box;
+  /* border: 2px solid #bbbbbb;
+  background-color: #e7e6e7; */
+  border-radius: 50%;
+  position: absolute;
+  margin-left: -45px;
+  margin-top: 4.1px;
+
+}
+
+/* appearance for checked radiobutton */
+form input[type="radio"]:checked + label:before {
+  /* background-color: #767676; */
+  border: 2px solid #bbbbbb;
+  
+}
+
+.color-choices{
+  float: left;
+  display: inline;
+  width: 300px;
+  padding-top: 5px;
+}

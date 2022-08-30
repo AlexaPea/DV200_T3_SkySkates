@@ -33,7 +33,7 @@ useEffect(() => {
 const navigate = useNavigate();
 
 let productId = sessionStorage.getItem("productId");
-console.log(productId);
+// console.log(productId);
 
 const [imgUrl, setImgUrl] = useState();
 
@@ -63,6 +63,11 @@ useEffect(()=>{
     Axios.get('http://localhost:5000/api/oneproduct/' + productId)
     .then(res => {
         let data = res.data;
+        // console.log(data);
+        var keys = Object.keys(data.availStock[0].variations);
+        // console.log(keys);
+        // console.log(keys[0]);
+        
         setProductData({
       
             productName: data.productName,
@@ -72,10 +77,10 @@ useEffect(()=>{
             productDiscount: data.productDiscount,
             productRating: data.productRating,
             veganFriendly: data.veganFriendly,
-            colorOne: data.colorOne,
-            colorTwo: data.colorTwo,
-            colorThree: data.colorThree,
-            // valOne: "",
+            colorOne: keys[0],
+            colorTwo: keys[1],
+            colorThree: keys[2],
+            // valOne: data,
             // valTwo: "",
             // valThree: "",
             
@@ -99,6 +104,9 @@ useEffect(()=>{
           
 
 <div className='productInfo-Head'>
+  <form>
+
+
             <div className='customDiv'>
                 <label className='labelOne'> Select Size (US)
                     <select>
@@ -109,11 +117,51 @@ useEffect(()=>{
                     </select>
                 </label>
                 <br/>
-
+           
                 <label> Select Colour
-                    <div className='colorOp One'></div>
-                    <div className='colorOp Two'></div>
-                    <div className='colorOp Three'></div>
+                <div class="color-choices">
+                    <div>
+                      <input id="choice-1" name="choice" type="radio" value={productData.colorOne}
+                      style={{
+                      backgroundColor: productData.colorOne,
+                      appearance: 'none',
+                      /* create custom radiobutton appearance */
+                      display: 'inline-block',
+                      width: '29px',
+                      height: '29px',
+                      borderRadius: "50px",
+                      padding: '6px'}}/>
+                      <label for="choice-1"></label>
+                    </div>
+                    
+                    <div>
+                      <input id="choice-2" name="choice" type="radio" value={productData.colorTwo}
+                       style={{
+                        backgroundColor:productData.colorTwo,
+                        appearance: 'none',
+                        /* create custom radiobutton appearance */
+                        display: 'inline-block',
+                        width: '29px',
+                        height: '29px',
+                        borderRadius: "50px",
+                        padding: '6px'}}/>
+                      <label for="choice-2"></label>
+                    </div>
+                    
+                    <div>
+                      <input id="choice-3" name="choice" type="radio" value={productData.colorThree}
+                       style={{
+                        backgroundColor:productData.colorThree,
+                        appearance: 'none',
+                        /* create custom radiobutton appearance */
+                        display: 'inline-block',
+                        width: '29px',
+                        height: '29px',
+                        borderRadius: "50px",
+                        padding: '6px'}}/>
+                      <label for="choice-3"></label>
+                    </div>
+                  </div>
                     
                 </label>
                 <br/>
@@ -126,6 +174,7 @@ useEffect(()=>{
                     </select>
                 </label>
             </div>
+          </form>
             
             <div className='productBuyImg'>
                <img src={imgUrl} className="buyImg"/>
