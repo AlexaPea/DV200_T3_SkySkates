@@ -14,6 +14,9 @@ app.use(cors ({
     origin: 'http://localhost:3000'
 }));
 
+//images
+app.use('/productImages', express.static("productImages"));
+
 //middleware to use body parse function
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));

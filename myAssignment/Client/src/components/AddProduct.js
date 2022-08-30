@@ -24,7 +24,7 @@ const [formValues, setFormValues] = useState(defaultFormVals);
 const [imageName, setImageName] = useState("Name of file will appear here");
 
 const [productImage, setProductImage] = useState();
-
+ 
 const getValues = (e) =>{
   const { name, value } = e.target;
   setFormValues({ ...formValues, [name]: value });
@@ -32,6 +32,8 @@ const getValues = (e) =>{
 
 //
 const getImage = (e) =>{
+  e.preventDefault();
+  console.log("click add image");
 //where multer comes in
 let imageFile = e.target.files[0];
 setProductImage(imageFile);
@@ -70,16 +72,16 @@ const addProduct = (e) => {
         productRating: formValues['productRating'],
         productName: formValues['productName'],
         inStock: '',
-        availStock: { 
-            size: 5,
-            variations{
-              formValues['colorOne']: formValues['Five-valOne'],
-              formValues['colorTwo']: formValues['valTwo'],
-              formValues['colorThree']: formValues['valThree']
-            }
+        availStock: [{ 
+            // size: 5,
+            // variations{
+            //   formValues['colorOne']: formValues['Five-valOne'],
+            //   formValues['colorTwo']: formValues['Five-valTwo'],
+            //   formValues['colorThree']: formValues['Five-valThree']
+            // }
 
 
-        },
+        }],
        
   }
 
@@ -112,7 +114,7 @@ const addProduct = (e) => {
 
                     <div className='col-One'>
                     <h4>Item Information</h4>
-                    <button variant="contained" component="label"> Upload File <input type="file" hidden onChange={getImage}/></button>
+                    <button variant="contained" component="label"> Upload File <input type="file" hidden onClick={getImage}/></button>
                     <div className='imgPrev'><img id="imgPrev"></img></div>
                     <p>{imageName}</p> 
                             

@@ -9,6 +9,7 @@ import Admin from './components/Admin';
 import ProductPage from './components/ProductPage';
 import Cart from './components/Cart';
 import Login from './components/Login';
+import Register from './components/Register';
 
 
 function App() {
@@ -16,12 +17,13 @@ function App() {
     <div className="App">
 
       <Routes>
-        <Route path='/' element = {<Home/>}/>
+        <Route path='/' element = {<Login/>}/>
+        <Route path='/Home' element = {<Home/>}/>
         <Route path='/Shop' element = {<Shop/>}/>
         <Route path='/Admin' element = {<Admin/>}/>
         <Route path='/Cart' element = {<Cart/>}/>
         <Route path='/ProductPage' element = {<ProductPage/>}/>
-        <Route path='/Login' element = {<Login/>}/>
+        <Route path='/Register' element = {<Register/>}/>
       </Routes>
    
     </div>

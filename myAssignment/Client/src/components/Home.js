@@ -17,11 +17,12 @@ import skateGirl from "../Assets/Images/skateGirl.jpg";
 import shoes from "../Assets/Images/shoes.jpg";
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import Logo from '../Assets/Images/scribble2.png';
+import Axios from 'axios';
 // import ReactFullpage from '@fullpage/react-fullpage';
 
 
 const Home = () => {
-    console.log("it works");
+    console.log(sessionStorage.getItem('token'));
 
         
 //=============================================================================
@@ -43,6 +44,32 @@ useEffect(() => {
   const [userId, setUserId] = useState({
     activeUser: sessionStorage.getItem('activeUser'),
 });
+
+
+//============================================
+//verify User
+useEffect(()=>{
+
+  let verifyUser = {token: sessionStorage.getItem('token')};
+  if(!verifyUser.token){
+    navigate('/');
+    sessionStorage.clear();
+  }else{
+    Axios.get('http://localhost:5000/api/verifytoken', verifyUser)
+    .then(res =>{
+      console.log(res.data);
+      if(res.data.verified === false){
+        navigate('/');
+        sessionStorage.clear();
+
+      }
+    })
+
+    
+
+  }
+
+}, []);
 
 
     return (

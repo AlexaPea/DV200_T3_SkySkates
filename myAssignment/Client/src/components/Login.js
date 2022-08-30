@@ -6,6 +6,7 @@ import Helmet from "react-helmet";
 import Logo from '../Assets/Images/scribble2.png';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 
 const Login = (props) => {
@@ -25,11 +26,62 @@ useEffect(() => {
     link.href = {Logo};
   }, []);
 
-  const navigate = useNavigate();
+ 
 
-  const [userId, setUserId] = useState({
-    activeUser: sessionStorage.getItem('activeUser'),
-});
+//   const [userId, setUserId] = useState({
+//     activeUser: sessionStorage.getItem('activeUser'),
+// });
+
+//=================================================================
+//login
+
+const navigate = useNavigate();
+
+let formVals = ["username", "password"];
+
+const [formValues, setFormValues] = useState(formVals);
+
+const getValues = (e) =>{
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+}
+
+const loginUser = (e) => {
+    e.preventDefault(); 
+
+    let payload = {
+        username: formValues['username'],
+        password: formValues['password']
+    }
+
+    Axios.post('http://localhost:5000/api/loginUser', payload)
+    .then((res)=>{
+      console.log(res.data);
+      if(!res.data){
+        alert('Bad request');
+      }else{
+        if(res.data.user){
+          alert("welcome user");
+          sessionStorage.setItem('token', res.data.user);
+          navigate("/Home");
+        }else{
+          alert("Not happening")
+        }
+      }
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
+}
+
+//============================================
+//To register
+const toRegister = () =>{
+    navigate('/Register')
+}
+
+
 
 
     return (
@@ -42,20 +94,22 @@ useEffect(() => {
 
          <Navigation/>
             <div className='login-text'>
-                <form>
+                <form onSubmit={loginUser}>
                     <h1>SKY SKATES.</h1>
 
                     <label>Email
-                        <input type="email" placeholder='beyonce@gmail.com'/>
+                        <input type="email" name="username" placeholder='beyonce@gmail.com' onChange={getValues}/>
                     </label>
 
                     <label>Password
-                        <input type="Password" placeholder='******'/>
+                        <input type="Password" name="password" placeholder='******' onChange={getValues}/>
                     </label>
 
                     <input type="submit" id='login-submit'></input>
 
                 </form>
+
+                <button className='primary-btn' onClick={toRegister}>Register</button>
 
             </div>
 
