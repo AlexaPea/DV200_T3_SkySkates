@@ -214,6 +214,7 @@ router.post('/api/loginuser', async (req,res) => {
 
 router.post('/api/verifytoken', async (req,res) =>{
     const token = req.body.token;
+    // console.log(token);
     const decode = jwt.verify(token, '883Xc7F@1dkK');
 
     

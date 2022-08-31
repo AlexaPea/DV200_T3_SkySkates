@@ -51,7 +51,9 @@ useEffect(()=>{
  
     let productData = res.data;
     console.log(productData);
-    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} availStock={item.availStock[0]} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
+    let keys = Object.keys(productData[0].availStock);
+    // console.log(keys);
+    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} availStock={item.availStock} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
     setProducts(renderProducts);
     setUpdateProducts(false);
 

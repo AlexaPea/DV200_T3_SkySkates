@@ -56,7 +56,7 @@ useEffect(()=>{
     navigate('/');
     sessionStorage.clear();
   }else{
-    Axios.get('http://localhost:5000/api/verifytoken', verifyUser)
+    Axios.post('http://localhost:5000/api/verifytoken', verifyUser)
     .then(res =>{
       console.log(res.data);
       if(res.data.verified === false){
@@ -65,9 +65,6 @@ useEffect(()=>{
 
       }
     })
-
-    
-
   }
 
 }, []);

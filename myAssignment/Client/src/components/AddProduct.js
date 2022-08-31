@@ -32,7 +32,7 @@ const getValues = (e) =>{
 
 //
 const getImage = (e) =>{
-  e.preventDefault();
+  
   console.log("click add image");
 //where multer comes in
 let imageFile = e.target.files[0];
@@ -43,7 +43,7 @@ setProductImage(imageFile);
 let value = e.target.value;
 let imgName = value.substring(12);
 setImageName(imgName);
-
+console.log(imgName);
 let reader = new FileReader();
 reader.onload = () => {
   let output = document.getElementById('imgPrev');
@@ -53,7 +53,7 @@ reader.onload = () => {
 
 reader.readAsDataURL(e.target.files[0]);
 
-}
+};
 
 const addProduct = (e) => {
     e.preventDefault();
@@ -69,16 +69,16 @@ const addProduct = (e) => {
         productDiscount: +formValues['productDiscount'],
         productDescription: formValues['productDescription'],
         veganFriendly: formValues['veganFriendly'],
-        productRating: formValues['productRating'],
+        productRating: +formValues['productRating'],
         productName: formValues['productName'],
         inStock: '',
         availStock: [{ 
-            // size: 5,
-            // variations{
-            //   formValues['colorOne']: formValues['Five-valOne'],
-            //   formValues['colorTwo']: formValues['Five-valTwo'],
-            //   formValues['colorThree']: formValues['Five-valThree']
-            // }
+            size: 5,
+            variations{
+              formValues['colorOne']: formValues['Five-valOne'],
+              formValues['colorTwo']: formValues['Five-valTwo'],
+              formValues['colorThree']: formValues['Five-valThree']
+            }
 
 
         }],
@@ -114,7 +114,7 @@ const addProduct = (e) => {
 
                     <div className='col-One'>
                     <h4>Item Information</h4>
-                    <button variant="contained" component="label"> Upload File <input type="file" hidden onClick={getImage}/></button>
+                    <label className='file-btn'> Upload File <input type="file" hidden onClick={getImage}/></label>
                     <div className='imgPrev'><img id="imgPrev"></img></div>
                     <p>{imageName}</p> 
                             
