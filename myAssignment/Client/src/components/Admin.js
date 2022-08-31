@@ -11,7 +11,10 @@ import Axios from 'axios';
 import { UilPlus } from '@iconscout/react-unicons';
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import AddProduct from './AddProduct';
-import guySkates from '../Assets/Images/guySkates.png'
+import guySkates from '../Assets/Images/guySkates.png';
+import orderCircle from '../Assets/Images/order-circle.png';
+import { UilTruck } from '@iconscout/react-unicons'
+import ProcessOrder from './ProcessOrder';
 
 
 const Admin = (props) => {
@@ -45,9 +48,10 @@ useEffect(()=>{
   Axios.get('http://localhost:5000/api/readproducts')
   .then(res =>{
 
+ 
     let productData = res.data;
     console.log(productData);
-    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
+    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} availStock={item.availStock[0]} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
     setProducts(renderProducts);
     setUpdateProducts(false);
 
@@ -69,11 +73,37 @@ useEffect(()=>{
 
     };
 
+//=================================
+//=============================================
+//Read orders
+
+
+const [orders, setOrders] = useState();
+const [updateOrders, setUpdateOrders] = useState();
+
+useEffect(()=>{
+
+  Axios.get('http://localhost:5000/api/readorders')
+  .then(res =>{
+
+    let productData = res.data;
+    console.log(productData);
+    // if(productData.clientEmail === sessionStorage.getItem("user")){}
+    let renderOrders = productData.map((item) => <ProcessOrder key={item._id} orderId={item._id} productName={item.productName} productColour={item.productColour} clientEmail={item.clientEmail} size={item.size} quantity={item.quantity} price={item.price} date={item.Date} editRender={setUpdateOrders}/>)
+    setOrders(renderOrders);
+    setUpdateOrders(false);
+
+  })
+  .catch(err => console.log(err));
+ 
+},[updateOrders]);
+
 
  
 
     return (
-        <div className='adminPage'>
+        <div>
+          <div  className='adminPage'>
             <Helmet>
                 <title>Admin</title>
                 <link rel="icon" href={Logo}/>
@@ -97,10 +127,25 @@ useEffect(()=>{
                 {products}
 
             </div>
-
-            <div className='process-orders'>
+            </div>
+            <div className='processcontainer'>
               <h1>Orders in Process</h1>
-                {/* {orders} */}
+              <img src={orderCircle} className="order-circle"/>
+         
+                <table className='proccess-orders'>
+                  <tr className='heading-row'>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Product Name</th>
+                    <th>Size</th>
+                    <th>Colour</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Dispatch</th>
+                  </tr>
+
+                  {orders}
+                </table>
 
             </div>
             {modalArea}

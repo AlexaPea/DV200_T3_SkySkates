@@ -157,7 +157,7 @@ li--active a:after {
 
 .headerImg img{
   margin-top: 159px;
-  width: 65%;
+  width: 63%;
   float: right;
   margin-left: -210px;
   margin-right: 30px;
@@ -1441,7 +1441,7 @@ textarea{
 
 .addBtn{
   position: fixed;
-  margin-top: 80vh;
+  margin-top: 70vh;
   margin-left: 108ch;
   border-color: #F9A03F;
   border: none;
@@ -1643,4 +1643,69 @@ position: absolute;
   width: 80%;
   margin: 10px;
   margin-top: 150px;
+  
+}
+
+/*===========================*/
+.proccess-orders{
+  width: 90%;
+  padding: 10px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.heading-row{
+  background-color: #2b2b2b;
+  outline: #2b2b2b;
+  border-collapse: collapse;
+
+}
+
+.proccess-orders th{
+  color: #f1f1f1;
+  padding: 15px;
+  font-weight: 300;
+  border: none;
+  outline: none;
+  text-align: left;
+  
+}
+
+.proccess-orders td{
+  padding: 10px;
+  text-align: left;
+}
+
+.processcontainer{
+  width: 100%;
+  float: left;
+  padding-bottom: 50px;
+}
+
+.processcontainer h1{
+  padding-top: 20px;
+  text-align: left;
+  margin-left: 60px;
+
+}
+
+.order-circle{
+  position: absolute;
+  width: 290px;
+  margin-top: -65px;
+  margin-left: -383px;
+}
+
+.proccess-orders tr{
+  border-bottom: 0.2px solid #bdbdbd;
+  
+}
+
+.dispatch{
+  padding-left: 28px;
+  cursor: pointer;
+}
+
+.dispatch:hover{
+ color: #F9A03F;
 }

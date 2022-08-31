@@ -60,6 +60,7 @@ const UpdateForm = (props) => {
     }
 
 
+    console.log(props.availStock);
 
     return (
       <div className='pop-up'>
