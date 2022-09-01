@@ -8,9 +8,10 @@ import success from '../Assets/Images/success.png';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { UilArrowLeft } from '@iconscout/react-unicons'
+import { UilArrowLeft } from '@iconscout/react-unicons';
+import ToCart from './ToCart';
 
-const ProductPage = () => {
+const ProductPage = (props) => {
 
 //=============================================================================
 // Dynamically load favicon
@@ -85,9 +86,12 @@ useEffect(()=>{
           let dicountNum = (data.productPrice/100) * data.productDiscount;
           setNewPrice(data.productPrice - dicountNum);
           setShowNewPrice("R" + (data.productPrice - dicountNum));
+          const element = document.querySelector('.displayPrice');
+          element.style.textDecoration  = 'line-through';
         }else{
           setNewPrice(data.productPrice);
           setShowNewPrice("");
+        
         }
 
 
@@ -129,6 +133,7 @@ const getValues = (e) =>{
 const { name, value } = e.target;
 setFormValues({ ...formValues, [name]: value });
 }
+const [addedToCart, setAddedToCart] = useState();
 
 const addOrder = (e) => {
     e.preventDefault(); 
@@ -137,7 +142,7 @@ const addOrder = (e) => {
     let payload = {
       productName:productData.productName,
       // productId:productData.productId,
-        price: +productData.productPrice,
+        price: +newPrice,
         clientEmail: sessionStorage.getItem("user"),
         quantity: +formValues['quantity'],
         productColour: formValues['productColor'],
@@ -164,6 +169,19 @@ const addOrder = (e) => {
       console.log( localStorage.getItem('productsInCart'));
     }
 
+    //==========================================================
+//add product modal
+
+    // Handle Modal
+    
+
+   
+
+    setAddedToCart(<ToCart upRender={props.rerender} rerender={setAddedToCart}/>)
+        
+
+ 
+
 
 } 
 
@@ -171,13 +189,14 @@ const addOrder = (e) => {
 
     return (
         <div>
+          {addedToCart}
              <Helmet>
                 <title>Product</title>
                 <link rel="icon" href={Logo}/>
             </Helmet>
             <Navigation/>
 
-            <UilArrowLeft onClick={backHome} className="backArrow" size="35"/>
+            <UilArrowLeft onClick={backHome} className="backArrow" size="45"/>
 
 {/* <div className='order-success'>
       <div className='opacityBg'>
@@ -274,7 +293,7 @@ const addOrder = (e) => {
                 <h3>{productData.productCollection}</h3>
                 <h1>{productData.productName}</h1>
                 <p>{productData.productDescription}</p>
-                <h4>R {productData.productPrice}</h4>
+                <h4 className="displayPrice">R {productData.productPrice}</h4>
                 <div className='newPrice'>{showNewPrice}</div>
                 <button type="submit" className='primaryBtn buy'>Add to cart</button>
                 <br/>
@@ -292,25 +311,51 @@ const addOrder = (e) => {
                     <div class="tab">
                     <input type="radio" name="css-tabs" id="tab-1"  class="tab-switch" checked/>
                     <label for="tab-1" class="tab-label">Shipping</label>
-                    <div class="tab-content">My father had a small estate in Nottinghamshire: I was the third of five sons. He sent me to Emanuel College in Cambridge at fourteen years old, where I resided three years, and applied myself close to my studies; but the charge of maintaining me, although I had a very scanty allowance, being too great for a narrow fortune, I was bound apprentice to Mr. James Bates, an eminent surgeon in London, with whom I continued four years. </div>
+                    <div class="tab-content">
+                      <h2>Shipping Details</h2>
+                      <h3>Standard Delivery</h3>
+                      <ul>
+                        <li>Delivery to main centres within 2 to 4 working days (Cape Town, Johannesburg, Pretoria).</li>
+                        <li>Delivery to regional and outlying areas could take up to 5 to 7 working days</li>
+                        <li>Shipping Fee is 15% of your purchase - this is calculated upon checkout.</li>
+                      </ul>
+
+                      <h3>Expedited Delivery</h3>
+                      <ul>
+                        <li>Delivery to main centres within 2 to 3 working days (Cape Town, Johannesburg, Pretoria).</li>
+                        <li>Delivery to regional and outlying areas could take up to 3 to 5 working days</li>
+                        <li>Shipping Fee remains 15% of your purchase - this is calculated upon checkout.</li>
+                      </ul>
+
+
+                    </div>
                     </div>
                     <div class="tab">
                     <input type="radio" name="css-tabs" id="tab-2" class="tab-switch"/>
                     <label for="tab-2" class="tab-label">Returns</label>
-                    <div class="tab-content">My father now and then sending me small sums of money, I laid them out in learning navigation, and other parts of the mathematics, useful to those who intend to travel, as I always believed it would be, some time or other, my fortune to do. </div>
+                    <div class="tab-content">
+                       <h2>Return Details</h2>
+                       <h4>If you are unhappy with your purchase for any reasons, you can return it to us in one of 3 ways:</h4>
+                       <ul>
+                        <li>Return it to one of our stores.</li>
+                        <li>Log a return online and we will arrange collection with our couriers.</li>
+                        <li>Contact Us if you need assistance processing a return.</li>
+                       </ul>
+                    </div>
                     </div>
                     <div class="tab">
                     <input type="radio" name="css-tabs" id="tab-3" class="tab-switch"/>
                     <label for="tab-3" class="tab-label">Reviews</label>
                     <div class="tab-content">
-                        <h3>Reviews</h3>
+                        <h2>Reviews</h2>
                         <p>Leave a review! We'd love to know your thoughts!</p>
-                        <h2>Be The first to leave a review for {productData.productName}</h2>
+                        <h4>Be The first to leave a review for {productData.productName}</h4>
                         <div className='review'>
-                          <label>Your Rating
+                          <input type="textArea" className="reviewText" placeholder="Type your review here!"/>
+                          <div className="primary-btn">Submit Review</div>
 
 
-                          </label>
+                        
                         </div>
                     </div>
                     </div>

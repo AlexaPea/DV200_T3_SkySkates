@@ -130,7 +130,7 @@ router.delete('/api/deleteproduct/:id', async(req,res) =>{
 
 });
 
-//delete product
+//delete order
 //delete method
 router.delete('/api/deleteorder/:id', async(req,res) =>{
     const findProduct = await orderSchema.remove({_id: req.params.id});

@@ -61,7 +61,7 @@ const loginUser = (e) => {
         alert('Bad request');
       }else{
         if(res.data.user){
-          alert("welcome user");
+        
           sessionStorage.setItem('token', res.data.user);
           sessionStorage.setItem('user', formValues['username']);
           navigate("/Home");

@@ -13,17 +13,10 @@ const Orders = (props) => {
         let index = props.id;
         let productData=[];
         productData = JSON.parse(localStorage.getItem('productsInCart'));
-// console.log(productData);
         productData.splice(index, 1);
         localStorage.setItem('productsInCart', JSON.stringify(productData));
-          
-         
-          
+  
         }
-     
-
-
-
 
     const finalPrice = props.price * props.quantity;
 
