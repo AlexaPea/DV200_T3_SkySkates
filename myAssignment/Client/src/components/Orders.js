@@ -10,11 +10,12 @@ const Orders = (props) => {
     //delete function
     const deleteOrder = () => {
         // console.log(props.userId);
-    
-        if(window.confirm("Are you sure you want to delete this order? ") === true){
-          //console.log("deleted item");
-
-            }
+        let index = props.id;
+        let productData=[];
+        productData = JSON.parse(localStorage.getItem('productsInCart'));
+// console.log(productData);
+        productData.splice(index, 1);
+        localStorage.setItem('productsInCart', JSON.stringify(productData));
           
          
           
@@ -25,6 +26,8 @@ const Orders = (props) => {
 
 
     const finalPrice = props.price * props.quantity;
+
+    console.log(props.id);
 
     return (
        

@@ -75,11 +75,11 @@ useEffect(()=>{
     cartData.push(productData);
 
     // console.log(productData);
-    console.log(cartData);
+    // console.log(cartData);
     let displayData = JSON.parse(cartData);
-  
+  console.log(displayData);
     
-    let renderOrders = displayData.map((item) => <Orders productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
+    let renderOrders = displayData.map((item, index) => <Orders id={index} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
     setOrders(renderOrders);
     setUpdateOrders(false);
 
@@ -103,7 +103,7 @@ useEffect(()=>{
   setShipping(Math.ceil((sum/100)*15));
 
   },[updateOrders]);
-  
+
 // },[]);
 
   // // setTotal(productData.price)
