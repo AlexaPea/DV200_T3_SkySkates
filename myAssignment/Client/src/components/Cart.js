@@ -39,25 +39,78 @@ const [userId, setUserId] = useState({
 //Read orders
 
 
+// const [orders, setOrders] = useState();
+// const [updateOrders, setUpdateOrders] = useState();
+
+// useEffect(()=>{
+
+//   Axios.get('http://localhost:5000/api/readorders')
+//   .then(res =>{
+
+//     let productData = res.data;
+//     console.log(productData);
+//     // if(productData.clientEmail === sessionStorage.getItem("user")){}
+//     let renderOrders = productData.map((item) => <Orders key={item._id} orderId={item._id} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
+//     setOrders(renderOrders);
+//     setUpdateOrders(false);
+
+//   })
+//   .catch(err => console.log(err));
+
+// },[updateOrders]);
+
+
+//read orders from local storage
+
 const [orders, setOrders] = useState();
+const [total, setTotal] = useState();
+const [shipping, setShipping] = useState();
 const [updateOrders, setUpdateOrders] = useState();
 
 useEffect(()=>{
-
-  Axios.get('http://localhost:5000/api/readorders')
-  .then(res =>{
-
-    let productData = res.data;
+  
+ let cartData =[];
+    let productData = (localStorage.getItem('productsInCart'));
     console.log(productData);
-    // if(productData.clientEmail === sessionStorage.getItem("user")){}
-    let renderOrders = productData.map((item) => <Orders key={item._id} orderId={item._id} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
+    cartData.push(productData);
+
+    // console.log(productData);
+    console.log(cartData);
+    let displayData = JSON.parse(cartData);
+  
+    
+    let renderOrders = displayData.map((item) => <Orders productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
     setOrders(renderOrders);
     setUpdateOrders(false);
 
-  })
-  .catch(err => console.log(err));
+    let final = 0;
 
-},[updateOrders]);
+    let prices = displayData.map(function(item){
+      final = item.price * item.quantity;
+      return final;
+  });
+
+     // Creating variable to store the sum
+     var sum = 0;
+  
+     // Calculation the sum using forEach
+     prices.forEach(x => {
+         sum += x;
+     }); 
+  console.log(sum);
+  
+  setTotal(sum);
+  setShipping(Math.ceil((sum/100)*15));
+
+  },[updateOrders]);
+  
+// },[]);
+
+  // // setTotal(productData.price)
+    // setShipping(Math.ceil((productData.price/100)*15));
+    // console.log(productData);
+    // console.log(productData.productName);
+
 
 
     return (
@@ -98,11 +151,11 @@ useEffect(()=>{
             <table>
                 <tr>
                     <th>SUBTOTAL</th>
-                    <td>R5000</td>
+                    <td>R{total}</td>
                 </tr>     
                 <tr>
                     <th>SHIPPING EST</th>
-                    <td>R500</td>
+                    <td>R{shipping}</td>
                 </tr>         
             </table>
             <input type="text" placeholder='Enter Gift Code'></input>
@@ -110,7 +163,7 @@ useEffect(()=>{
             <table>
                 <tr>
                     <th>TOTAL</th>
-                    <td>R5500</td>
+                    <td>R{total + shipping}</td>
                 </tr>            
             </table>
 
@@ -127,17 +180,17 @@ useEffect(()=>{
 </div>
 
 
-<footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="row-long">
+<footer className="site-footer">
+      <div className="container">
+        <div className="row">
+          <div className="row-long">
             <h6>About</h6>
-            <p class="text-justify">SKY SKATES is for everyone. Our mission is to help support a positive and encouraging community for skaters of all levels that is welcoming and celebrates diversity in all walks of life.</p>
+            <p className="text-justify">SKY SKATES is for everyone. Our mission is to help support a positive and encouraging community for skaters of all levels that is welcoming and celebrates diversity in all walks of life.</p>
           </div>
 
-          <div class="rowOne">
+          <div className="rowOne">
             <h6>Categories</h6>
-            <ul class="footer-links">
+            <ul className="footer-links">
               <li><a href="http://scanfcode.com/category/c-language/">RollerSkates</a></li>
               <li><a href="http://scanfcode.com/category/front-end-development/">Competitions</a></li>
               <li><a href="http://scanfcode.com/category/back-end-development/">Chat To Teams</a></li>
@@ -146,9 +199,9 @@ useEffect(()=>{
             </ul>
           </div>
 
-          <div class="rowOne">
+          <div className="rowOne">
             <h6>Quick Links</h6>
-            <ul class="footer-links">
+            <ul className="footer-links">
               <li><a href="http://scanfcode.com/about/">About Us</a></li>
               <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
               <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
@@ -159,20 +212,20 @@ useEffect(()=>{
         </div>
         <hr/>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="extend">
-            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+      <div className="container">
+        <div className="row">
+          <div className="extend">
+            <p className="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
          <a href="#"> SKY SKATES</a>.
             </p>
           </div>
 
-          <div class="extend">
-            <ul class="social-icons">
-              <li><a class="facebook" href="#"><UilFacebookF/></a></li>
-              <li><a class="twitter" href="#"><UilTwitter/></a></li>
-              <li><a class="dribbble" href="#"><UilWhatsapp/></a></li>
-              <li><a class="linkedin" href="#"><UilInstagram/></a></li>   
+          <div className="extend">
+            <ul className="social-icons">
+              <li><a className="facebook" href="#"><UilFacebookF/></a></li>
+              <li><a className="twitter" href="#"><UilTwitter/></a></li>
+              <li><a className="dribbble" href="#"><UilWhatsapp/></a></li>
+              <li><a className="linkedin" href="#"><UilInstagram/></a></li>   
             </ul>
           </div>
         </div>

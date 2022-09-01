@@ -6,6 +6,7 @@ import Axios from 'axios';
 import UpdateForm from './UpdateForm';
 import { useState, useEffect } from 'react';
 import AddProduct from './AddProduct';
+import DeleteProductModal from './DeleteProductModal';
 
 
 const AdminProductCard = (props) => {
@@ -13,23 +14,30 @@ const AdminProductCard = (props) => {
 //==================================================
 //delete product
     //delete function
+
+    const [deleteProductMod, setDeleteProductMod] = useState(); 
     const deleteProduct = () => {
         // console.log(props.userId);
-    
-        if(window.confirm("Are you sure you want to delete: " + props.productName) === true){
-          //console.log("deleted item");
-    
-          Axios.delete('http://localhost:5000/api/deleteproduct/' + props.productId)
-          .then((res) => {
-            if(res){
-              console.log("Deleted: " + props.productName);
-              props.editRender(true);
-            }
-          
-          })
-          .catch(function (error) { console.log(error)});  
-        }
+
+
+        setDeleteProductMod(<DeleteProductModal upRender={props.rerender} rerender={setDeleteProductMod} productId={props.productId} />);
+        //  props.rerender();
       }
+    
+      //   if(window.confirm("Are you sure you want to delete: " + props.productName) === true){
+      //     //console.log("deleted item");
+    
+      //     Axios.delete('http://localhost:5000/api/deleteproduct/' + props.productId)
+      //     .then((res) => {
+      //       if(res){
+      //         console.log("Deleted: " + props.productName);
+      //         props.editRender(true);
+      //       }
+          
+      //     })
+      //     .catch(function (error) { console.log(error)});  
+      //   }
+      // }
 
 
 //==================================================================
@@ -47,6 +55,7 @@ const AdminProductCard = (props) => {
       productId = {props.productId}
       productName = {props.productName}
       productPrice = {props.productPrice}
+      productDiscount = {props.productDiscount}
       productCollection = {props.productCollection}
       productDescription = {props.productDescription}
       productRating = {props.productRating}
@@ -57,7 +66,11 @@ const AdminProductCard = (props) => {
     // setEditModal(<AddProduct rerender={setEditModal}/>)
   } 
 
-
+  if(props.discount > 0){
+    var discount =" | " +props.discount + "%";
+}else{
+    var discount = "";
+}
 
 
 
@@ -65,6 +78,7 @@ const AdminProductCard = (props) => {
     return (
         <> 
          {editModal}
+         {deleteProductMod}
         <div className='adminCard'>
         
             <div className='productCard'>
@@ -85,7 +99,7 @@ const AdminProductCard = (props) => {
                         <h6>Available Stock: {props.valOne}</h6>
                     </div>
                     <div className='shoePrice'>
-                        <h6>R {props.productPrice}</h6>
+                        <h6>R {props.productPrice} {discount}</h6>
                     </div>
 
                     <button className='primary-btn' onClick={editProduct}>Edit</button>

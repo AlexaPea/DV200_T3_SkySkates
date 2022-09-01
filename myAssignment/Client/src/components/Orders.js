@@ -13,18 +13,13 @@ const Orders = (props) => {
     
         if(window.confirm("Are you sure you want to delete this order? ") === true){
           //console.log("deleted item");
-    
-          Axios.delete('http://localhost:5000/api/deleteorder/' + props.orderId)
-          .then((res) => {
-            if(res){
-              console.log("Deleted order ");
-              props.editRender(true);
+
             }
           
-          })
-          .catch(function (error) { console.log(error)});  
+         
+          
         }
-      }
+     
 
 
 

@@ -29,7 +29,7 @@ const productImageStore = multer.diskStorage({
 
 //run middleware
 
-const UploadProductImage = multer({storage: productImageStore})
+const UploadProductImage = multer({storage: productImageStore});
 
 
 //Add product
@@ -41,20 +41,19 @@ router.post('/api/addproduct', UploadProductImage.single('image') , (req, res) =
 
     console.log(req.file.filename);
 
-    // console.log(req.body);
+    console.log(req.body);
     const newProduct = new productSchema({
         productName: req.body.productName,
         productPrice: req.body.productPrice,
         productDiscount: req.body.productDiscount,
         productCollection: req.body.productCollection,
         productDescription: req.body.productDescription,
-        productImg: req.body.productImg,
+        image: req.file.filename,
         productRating: req.body.productRating,
-        veganFriendly: req.body.veganFriendly,
         availStock: {
             // req.body.availStock
         },
-        image: req.file.filename
+
     });
 
     newProduct.save()
@@ -91,6 +90,7 @@ router.post('/api/addorder', (req, res) => {
 
     const newOrder = new orderSchema({
         productName: req.body.productName,
+        // productId: req.body.productId,
         price: +req.body.price,
         quantity: +req.body.quantity,
         productColour: req.body.productColour,

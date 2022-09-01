@@ -6,7 +6,8 @@ import { Axios } from 'axios';
 
 const UpdateForm = (props) => {
 
-  console.log(props);
+  // console.log(this.props);
+  console.log(props.availStock);
   
 
     let editFormValues = {
@@ -91,14 +92,12 @@ const UpdateForm = (props) => {
                          
                                 <input type="number" defaultValue={props.productPrice} name="productPrice" placeholder='Price' className ="half one"/>
                           
-
+                                <input type="number" name="productDiscount" placeholder='Discount' className ="half one" defaultValue={props.productDiscount}/>
                       
                                 <input type="number" placeholder='Rating' className ="half" defaultValue={props.productRating} name="productRating"/>
                           
 
-                                <h5 className='vegan'>Vegan?</h5>
-                            <input type="checkbox" placeholder='Rating' className ="css-checkbox" value="true" defaultValue={props.veganFriendly} name="veganFriendly"/>
-                            
+                          
                     </div>
                     <div className='col-Two'>
                             <h4>Available Stock</h4>

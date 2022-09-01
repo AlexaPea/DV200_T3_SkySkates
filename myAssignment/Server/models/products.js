@@ -20,16 +20,13 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    productImg:{
+    image:{
         type: String,
         required: true
     },
     productRating:{
         type: Number,
         required: true
-    },
-    veganFriendly:{
-        type: String
     },
     availStock:[{
         size: { type: Number,required: true},

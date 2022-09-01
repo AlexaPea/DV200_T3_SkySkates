@@ -15,6 +15,12 @@ const toProduct = () => {
   navigate('/ProductPage');
 }
 
+if(props.discount > 0){
+    var discount = props.discount + "% Off";
+}else{
+    var discount = "";
+}
+
     return (
         <div>
                 <div className='productCard' onClick={toProduct}>
@@ -30,7 +36,8 @@ const toProduct = () => {
                         <h4>{props.productName}</h4>
                     </div>
                     <div className='shoePrice'>
-                        <h6>R {props.productPrice}</h6>
+                        <h6>R {props.productPrice} </h6>
+                        <div className='discount'>{discount}</div>
                     </div>
                 </div>
             

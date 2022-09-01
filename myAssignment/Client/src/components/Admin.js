@@ -52,8 +52,11 @@ useEffect(()=>{
     let productData = res.data;
     console.log(productData);
     let keys = Object.keys(productData[0].availStock);
+    // let sizeFive = productData[0].availStock[0];
+    // let stuff = productData[0].availStock;
+    // console.log(productData[0].productName);
     // console.log(keys);
-    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} availStock={item.availStock} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
+    let renderProducts = productData.map((item) => <AdminProductCard key={item._id} productId={item._id} availStock={item.availStock} productName={item.productName} productPrice={item.productPrice} productCollection={item.productCollection} productDescription={item.productDescription} productDiscount={item.productDiscount} productRating={item.productRating} veganFriendly={item.veganFriendly} editRender={setUpdateProducts}/>)
     setProducts(renderProducts);
     setUpdateProducts(false);
 
@@ -91,7 +94,7 @@ useEffect(()=>{
     let productData = res.data;
     console.log(productData);
     // if(productData.clientEmail === sessionStorage.getItem("user")){}
-    let renderOrders = productData.map((item) => <ProcessOrder key={item._id} orderId={item._id} productName={item.productName} productColour={item.productColour} clientEmail={item.clientEmail} size={item.size} quantity={item.quantity} price={item.price} date={item.Date} editRender={setUpdateOrders}/>)
+    let renderOrders = productData.map((item) => <ProcessOrder key={item._id} orderId={item._id} productName={item.productName} productColour={item.productColour} clientEmail={item.clientEmail} size={item.size} quantity={item.quantity} productDiscount={item.productDiscount} price={item.price} date={item.Date} editRender={setUpdateOrders}/>)
     setOrders(renderOrders);
     setUpdateOrders(false);
 

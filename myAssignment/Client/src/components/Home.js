@@ -19,6 +19,8 @@ import shoes from "../Assets/Images/shoes.jpg";
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import Logo from '../Assets/Images/scribble2.png';
 import Axios from 'axios';
+import { Fade ,Slide,Zoom } from "react-awesome-reveal";
+
 // import ReactFullpage from '@fullpage/react-fullpage';
 
 
@@ -72,7 +74,8 @@ useEffect(()=>{
 
     return (
        
-        <div>
+      
+          <>
             
         <Helmet>
             <title>Home</title> 
@@ -81,54 +84,52 @@ useEffect(()=>{
 
          <Navigation/>
 
-<div className='containerScroll'>
 
 
-              <section className='One'>
 
-                          {/* <div className='first-header original'>
-
-                                      
-            <h1>LET'S GET <div className="physical">PHYSICAL.</div></h1>
-
-            <div className='headerImg pattern'>
-                              <img src={pattern}></img>
-                          </div>
-
-            </div> */}
+              
+             
 
 
+         <Fade direction='up' triggerOnce='true' duration={3000}>
                       <div className='first-header original'>
 
-                          
+                         {/* <Fade> */}
                           <h1>LET'S GET <div className="physical">PHYSICAL.</div></h1>
-                      
+                          {/* </Fade>   */}
                           <div className='headerImg'>
                               <img src={headerImg}></img>
                           </div>
+                    
+                      
                       
                       </div>
-              </section>
-
-              <section className='Two'>
+                      </Fade>
+           
+                      <Fade direction='up' triggerOnce='true'duration={2000}>
                       <div className='second-header'>
+                      
                         
                           <video autoPlay loop muted playsInline className='backVideo'>
                               <source src={video}/>
                           </video>
                           
                           <div className='content'>
+                          
                           <h1 class="text2">#GetShopping</h1>
                           <img className='second-scribble' src={scribble2}/>
+                          
                           </div>
 
+                         
                       </div>
+</Fade>
+                     
 
-              </section>
-
-              <section className='Three'>
+                      
 
                       <div className='third-header'>
+                      <Fade direction='up' triggerOnce='true' delay={1500}  duration={3000}>
                           <Carousel>
                               <div className='card one'>
                                   <h3 className='new-price'>R2500</h3>
@@ -160,11 +161,11 @@ useEffect(()=>{
                                   <button className='buy-btn'>Buy Now</button>
                               </div>
                           </Carousel> 
-
+                          </Fade>
                       </div>
-                </section>
+            
 
-                <section className='Four'>
+                      <Fade direction='up' triggerOnce='true' delay={100}  duration={3000}>
 
                       
                       <div className='info-header'>
@@ -189,7 +190,7 @@ useEffect(()=>{
                     
 
                       </div> */}
-                </section>
+                 </Fade>
 
                 <section className='Five'>
 
@@ -267,8 +268,8 @@ useEffect(()=>{
                     
    
             
-        </div>
-        </div>
+        </>
+        
     );
 };
 

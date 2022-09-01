@@ -37,7 +37,7 @@ const getImage = (e) =>{
 //where multer comes in
 let imageFile = e.target.files[0];
 setProductImage(imageFile);
-
+console.log(e.target.files);
 
 
 let value = e.target.value;
@@ -62,28 +62,58 @@ const addProduct = (e) => {
 
     // var inStock = +formValues[''] + +formValues[''] + +formValues[''];
 
+    let colourOne = formValues['colorOne'];
+    let colourTwo = formValues['colorTwo'];
+    let colourThree = formValues['colorThree'];
     let payload = {
         productName: formValues['productName'],
         productPrice: +formValues['productPrice'],
         productCollection: formValues['productCollection'],
         productDiscount: +formValues['productDiscount'],
         productDescription: formValues['productDescription'],
-        veganFriendly: formValues['veganFriendly'],
         productRating: +formValues['productRating'],
         productName: formValues['productName'],
         inStock: '',
-        availStock: [{ 
+        availStock: [
+          { 
             size: 5,
-            variations{
-              formValues['colorOne']: formValues['Five-valOne'],
-              formValues['colorTwo']: formValues['Five-valTwo'],
-              formValues['colorThree']: formValues['Five-valThree']
+            variations:{
+              [colourOne]: +formValues['Five-valOne'],
+              [colourTwo]: +formValues['Five-valTwo'],
+              [colourThree]: +formValues['Five-valThree']
             }
+          },
+          { 
+            size: 6,
+            variations:{
+              [colourOne]: +formValues['Six-valOne'],
+             [colourTwo]: +formValues['Six-valTwo'],
+              [colourThree]: +formValues['Six-valThree']
+            }
+          },
+          { 
+            size: 7,
+            variations:{
+              [colourOne]: +formValues['Seven-valOne'],
+              [colourTwo]: +formValues['Seven-valTwo'],
+              [colourThree]: +formValues['Seven-valThree']
+            }
+          },
+          { 
+            size: 8,
+            variations:{
+              [colourOne]: +formValues['Eight-valOne'],
+              [colourTwo]: +formValues['Eight-valTwo'],
+              [colourThree]: +formValues['Eight-valThree']
+            }
+          }
 
 
-        }],
+        ],
+      
        
   }
+  console.log(payload);
 
   payloadData.append("information", JSON.stringify(payload));
   payloadData.append("image", productImage);
@@ -114,7 +144,7 @@ const addProduct = (e) => {
 
                     <div className='col-One'>
                     <h4>Item Information</h4>
-                    <label className='file-btn'> Upload File <input type="file" hidden onClick={getImage}/></label>
+                    <label className='file-btn'> Upload File <input type="file" hidden onChange={getImage}/></label>
                     <div className='imgPrev'><img id="imgPrev"></img></div>
                     <p>{imageName}</p> 
                             
@@ -140,8 +170,7 @@ const addProduct = (e) => {
                                 <input type="number" placeholder='Rating' className ="half" name="productRating" onChange={getValues}/>
                           
 
-                                <h5 className='vegan'>Vegan?</h5>
-                            <input type="checkbox" placeholder='Rating' className ="css-checkbox" value="true" name="veganFriendly" onChange={getValues}/>
+                        
                             
                     </div>
                     <div className='col-Two'>
@@ -170,16 +199,16 @@ const addProduct = (e) => {
 
                                 <h5 className='option-label'>Size 7</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="Seven-valOne"/>
-                                <input className='qty-option' type="Number" name="Seven-valTwo"/>
-                                <input className='qty-option' type="Number" name="Seven-valThree"/>
+                                <input className='qty-option' type="Number" name="Seven-valOne" onChange={getValues}/>
+                                <input className='qty-option' type="Number" name="Seven-valTwo" onChange={getValues}/>
+                                <input className='qty-option' type="Number" name="Seven-valThree" onChange={getValues}/>
                                 </div>
 
                                 <h5 className='option-label'>Size 8</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="Eight-valOne"/>
-                                <input className='qty-option' type="Number" name="Eight-valTwo"/>
-                                <input className='qty-option' type="Number" name="Eight-valThree"/>
+                                <input className='qty-option' type="Number" name="Eight-valOne" onChange={getValues}/>
+                                <input className='qty-option' type="Number" name="Eight-valTwo" onChange={getValues}/>
+                                <input className='qty-option' type="Number" name="Eight-valThree" onChange={getValues}/>
                                 </div>
                          
 

@@ -50,6 +50,7 @@ code {
   height: 150px;
   display: inline;
   top: 0;
+  z-index: 99999;
 }
 
 .icon.logout{
@@ -119,14 +120,14 @@ li--active a:after {
 }
 
 .first-header{
-  height: 100vh;
+  height: 86vh;
   font-weight: bolder;
   width: 100%;
   float: left ;
   left: 0;
   margin-left: -10px;
   position: relative;
-  margin-top: -120px;
+  margin-top: -0px;
   background-image: url(./Assets/Images/FinalHeader.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -148,7 +149,7 @@ li--active a:after {
   font-weight: 900;
   font-size: 76px;
   float: left;
-  margin-top: 360px;
+  margin-top: 215px;
   margin-left: 155px;
  
 
@@ -156,7 +157,7 @@ li--active a:after {
 }
 
 .headerImg img{
-  margin-top: 159px;
+  margin-top: 35px;
   width: 63%;
   float: right;
   margin-left: -210px;
@@ -204,7 +205,7 @@ hr{
 
 .second-header{
   width: 109%;
-  height: 100vh;
+  height: 90vh;
   /* background-color: #2b2b2b; */
   background-image: linear-gradient(rgba(51, 25, 3, 0.3),rgba(51, 25, 3, 0.3));
   float: left;
@@ -890,12 +891,13 @@ color: #F9A03F;
 }
 
 .summary{
+  position: absolute;
   width: 270px;
   background-color: #e6e6e6;
   height:350px;
-  float: right;
-  margin-top: -170px;
-  margin-right: 50px;
+
+  margin-top: -270px;
+  margin-left: 860px;
 }
 
 .summary h2{
@@ -1252,7 +1254,7 @@ color: #F9A03F;
   background: #2b2b2b83;
   float: left;
   position: fixed;
-  margin-top: -20px;
+  margin-top: -110px;
 }
 
 .add-products form{
@@ -1499,10 +1501,10 @@ textarea{
 .pop-up{
   width: 100%;
   height: 90vh;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.7);
   position:absolute;
   z-index: 99999;
-
+  margin-top: 90px;
   top: 0;
   left: 0;
 
@@ -1708,4 +1710,110 @@ position: absolute;
 
 .dispatch:hover{
  color: #F9A03F;
+}
+
+.discount{
+  position: absolute;
+  margin-top: -290px;
+  margin-left: -10px;
+font-weight: 600;
+  color: #ff8e15;
+  background-color: #ff8e1524;
+  padding: 10px;
+  border-radius: 0px;
+  font-size: 12px;
+}
+
+.discount:empty{
+  background: none;
+}
+
+
+.deleteProductModal{
+  position: fixed;
+ background-color: #f1f1f1;
+ margin-top: 120px;
+ margin-left: 450px;
+ width: 300px;
+ height: 400px;
+}
+
+.deleteProductModal h1{
+  font-size: 40px;
+  text-align: left;
+  padding: 10px;
+  margin-left: 20px;
+  margin-bottom: 0;
+  padding-top: 15px;
+}
+
+
+.deleteProductModal h3{
+  font-size: 16px;
+  font-weight: 500;
+  width: 78%;
+  text-align: left;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: -15px;
+}
+
+.deleteScrib{
+  position: absolute;
+  width: 250px;
+  margin-left: -120px;
+  margin-top: 25px;
+}
+
+.deleteProductModal .primary-btn{
+  background-color: #2b2b2b;
+  color: #f1f1f1;
+  padding: 10px;
+  width: 80%;
+ margin-left: 10px;
+  border: none;
+  margin-top: 80px;
+  cursor: pointer;
+
+}
+
+.deleteProductModal .secondary-btn{
+  background-color: #f1f1f1;
+  color: #2b2b2b;
+  border: 1.5px solid #2b2b2b;
+  padding: 10px;
+  width: 80%;
+ margin-left: 10px;
+ margin-top: 10px;
+ cursor: pointer;
+
+  /* bottom:0; */
+
+}
+
+.deleteProductModal .primary-btn:hover{
+  background-color: #ff9c32;
+  border: none;
+  color: #f1f1f1;
+}
+.deleteProductModal .secondary-btn:hover {
+  background-color: #ffcb93;
+  border: none;
+}
+
+.closeDeleteProd{
+  position: absolute;
+  margin-top: 25px;
+  margin-left: 85px;
+  cursor: pointer;
+  border: none;
+  
+}
+
+.pop-up.delete{
+  width: 100%;
+  height: 100vh;
+  margin-top: 0px;
+  background-color: rgba(0,0,0,0.7);
+  position: fixed;
 }

@@ -37,9 +37,12 @@ let productId = sessionStorage.getItem("productId");
 // console.log(productId);
 
 const [imgUrl, setImgUrl] = useState();
+const [newPrice, setNewPrice] = useState();
+const [showNewPrice, setShowNewPrice] = useState();
 
 const [productData, setProductData] = useState({
     productName: "",
+    // productId: "",
     productPrice: "",
     productDescription: "",
     productCollection: "",
@@ -62,6 +65,8 @@ const backHome = () =>{
 }
 
 useEffect(()=>{
+
+  // localStorage.clear();
     Axios.get('http://localhost:5000/api/oneproduct/' + productId)
     .then(res => {
         let data = res.data;
@@ -76,11 +81,20 @@ useEffect(()=>{
           sizes.push(data.availStock[i].size)
         }
        
+        if(data.productDiscount>0){
+          let dicountNum = (data.productPrice/100) * data.productDiscount;
+          setNewPrice(data.productPrice - dicountNum);
+          setShowNewPrice("R" + (data.productPrice - dicountNum));
+        }else{
+          setNewPrice(data.productPrice);
+          setShowNewPrice("");
+        }
 
 
         setProductData({
       
             productName: data.productName,
+            // productId: data._id,
             productPrice: data.productPrice,
             productDescription: data.productDescription,
             productCollection: data.productCollection,
@@ -104,6 +118,9 @@ useEffect(()=>{
 
 //====================================================================================
 //Place Order
+
+const [array, setArray] =useState();
+
 let formVals = ["productName", "price", "quantity", "productColor", "size", "clientEmail"];
 
 const [formValues, setFormValues] = useState(formVals);
@@ -119,6 +136,7 @@ const addOrder = (e) => {
 
     let payload = {
       productName:productData.productName,
+      // productId:productData.productId,
         price: +productData.productPrice,
         clientEmail: sessionStorage.getItem("user"),
         quantity: +formValues['quantity'],
@@ -126,22 +144,27 @@ const addOrder = (e) => {
         size: +formValues['size']
     }
 
-    console.log(payload);
 
-    Axios.post('http://localhost:5000/api/addorder', payload)
-    .then((res)=> {
-        if(res){
-        console.log("Order Successful");
-        // navigate("/Home"); 
+    let cart = JSON.parse(localStorage.getItem('productsInCart'));
 
-        //make a pop up modal
+    if(!cart){
+      console.log("Cart is empty");
+    
+      let array = [payload];
+      let string = JSON.stringify(array);
+      localStorage.setItem('productsInCart', string);
+    }else{
+      console.log("item in cart");
+      console.log(cart);
+    
+      let newArray = [...cart, payload];
+      let string = JSON.stringify(newArray);
+      localStorage.setItem('productsInCart',string);
+    
+      console.log( localStorage.getItem('productsInCart'));
+    }
 
 
-        }
-    })
-    .catch(function (error) {
-        console.log("Error is:" + error);
-    });
 } 
 
 
@@ -252,6 +275,7 @@ const addOrder = (e) => {
                 <h1>{productData.productName}</h1>
                 <p>{productData.productDescription}</p>
                 <h4>R {productData.productPrice}</h4>
+                <div className='newPrice'>{showNewPrice}</div>
                 <button type="submit" className='primaryBtn buy'>Add to cart</button>
                 <br/>
                 <small>size chart</small>
@@ -266,7 +290,7 @@ const addOrder = (e) => {
                 <div class="wrapper">
                 <div class="tabs">
                     <div class="tab">
-                    <input type="radio" name="css-tabs" id="tab-1"  class="tab-switch"/>
+                    <input type="radio" name="css-tabs" id="tab-1"  class="tab-switch" checked/>
                     <label for="tab-1" class="tab-label">Shipping</label>
                     <div class="tab-content">My father had a small estate in Nottinghamshire: I was the third of five sons. He sent me to Emanuel College in Cambridge at fourteen years old, where I resided three years, and applied myself close to my studies; but the charge of maintaining me, although I had a very scanty allowance, being too great for a narrow fortune, I was bound apprentice to Mr. James Bates, an eminent surgeon in London, with whom I continued four years. </div>
                     </div>
@@ -278,7 +302,17 @@ const addOrder = (e) => {
                     <div class="tab">
                     <input type="radio" name="css-tabs" id="tab-3" class="tab-switch"/>
                     <label for="tab-3" class="tab-label">Reviews</label>
-                    <div class="tab-content">When I left Mr. Bates, I went down to my father: where, by the assistance of him and my uncle John, and some other relations, I got forty pounds, and a promise of thirty pounds a year to maintain me at Leyden: there I studied physic two years and seven months, knowing it would be useful in long voyages.</div>
+                    <div class="tab-content">
+                        <h3>Reviews</h3>
+                        <p>Leave a review! We'd love to know your thoughts!</p>
+                        <h2>Be The first to leave a review for {productData.productName}</h2>
+                        <div className='review'>
+                          <label>Your Rating
+
+
+                          </label>
+                        </div>
+                    </div>
                     </div>
                 </div>
        
