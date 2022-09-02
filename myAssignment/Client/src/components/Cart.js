@@ -9,9 +9,10 @@ import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscou
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
+import CheckOutModal from './CheckOutModal'
 import Orders from './Orders';
 
-const Cart = () => {
+const Cart = (props) => {
 
 //=============================================================================
 // Dynamically load favicon
@@ -65,42 +66,54 @@ const [userId, setUserId] = useState({
 const [orders, setOrders] = useState();
 const [total, setTotal] = useState();
 const [shipping, setShipping] = useState();
+const [final, setFinal] = useState();
 const [updateOrders, setUpdateOrders] = useState();
 
 useEffect(()=>{
   
  let cartData =[];
     let productData = (localStorage.getItem('productsInCart'));
-    console.log(productData);
-    cartData.push(productData);
-
-    // console.log(productData);
-    // console.log(cartData);
-    let displayData = JSON.parse(cartData);
-  console.log(displayData);
+    if(productData){
+      console.log(productData);
+      cartData.push(productData);
+  
+      // console.log(productData);
+      // console.log(cartData);
+      let displayData = JSON.parse(cartData);
+    console.log(displayData);
+      
+      let renderOrders = displayData.map((item, index) => <Orders id={index} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
+      setOrders(renderOrders);
+      setUpdateOrders(false);
+  
+      let final = 0;
+  
+      let prices = displayData.map(function(item){
+        final = item.price * item.quantity;
+        return final;
+    });
+  
+       // Creating variable to store the sum
+       var sum = 0;
     
-    let renderOrders = displayData.map((item, index) => <Orders id={index} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
-    setOrders(renderOrders);
-    setUpdateOrders(false);
-
-    let final = 0;
-
-    let prices = displayData.map(function(item){
-      final = item.price * item.quantity;
-      return final;
-  });
-
-     // Creating variable to store the sum
-     var sum = 0;
+       // Calculation the sum using forEach
+       prices.forEach(x => {
+           sum += x;
+       }); 
+    console.log(sum);
+    
+    setTotal(sum);
+    setShipping(Math.ceil((sum/100)*15));
+    setFinal(sum+ Math.ceil((sum/100)*15));
   
-     // Calculation the sum using forEach
-     prices.forEach(x => {
-         sum += x;
-     }); 
-  console.log(sum);
-  
-  setTotal(sum);
-  setShipping(Math.ceil((sum/100)*15));
+
+
+    }else{
+      setTotal("0");
+      setShipping("0");
+      setFinal("0");
+
+    }
 
   },[updateOrders]);
 
@@ -111,7 +124,18 @@ useEffect(()=>{
     // console.log(productData);
     // console.log(productData.productName);
 
+//==========================================================
+//add product modal
 
+    // Handle Modal
+    const [checkOutModalArea, setCheckOutModal] = useState();
+
+    const checkout = (event) => {
+
+      setCheckOutModal(<CheckOutModal upRender={props.rerender} rerender={setCheckOutModal}/>)
+        
+
+    };
 
     return (
         <div>
@@ -120,7 +144,7 @@ useEffect(()=>{
                 <link rel="icon" href={Logo}/>
             </Helmet>
             <Navigation/>
-
+{checkOutModalArea}
 
 <div className='body'>
 
@@ -163,11 +187,11 @@ useEffect(()=>{
             <table>
                 <tr>
                     <th>TOTAL</th>
-                    <td>R{total + shipping}</td>
+                    <td>R{final}</td>
                 </tr>            
             </table>
 
-            <button>Proceed to checkout</button>
+            <button onClick={checkout}>Proceed to checkout</button>
 
         </div>
 

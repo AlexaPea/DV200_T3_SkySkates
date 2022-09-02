@@ -11,7 +11,41 @@ const UpdateForm = (props) => {
   var key = Object.keys(props.availStock[0].variations);
   console.log(key);
   let colourFirst = key[0];
-  console.log(props.availStock[0].variations.colourFirst);
+  let colourSecond = key[1];
+  let colourThird = key[2];
+  console.log(props.availStock[0].variations[colourFirst]);
+
+  //get quantites for first colour
+  let colourOneVal=[];
+  for(let i = 0; i<(key.length +1 ); i++ ){
+      let value = props.availStock[i].variations[colourFirst]
+      colourOneVal.push(value);
+  }
+
+  console.log(colourOneVal);
+
+    //get quantites for first colour
+    let colourTwoVal=[];
+    for(let i = 0; i<(key.length +1 ); i++ ){
+        let value = props.availStock[i].variations[colourSecond]
+        colourTwoVal.push(value);
+    }
+  
+    console.log(colourTwoVal);
+
+      //get quantites for first colour
+  let colourThreeVal=[];
+  for(let i = 0; i<(key.length +1 ); i++ ){
+      let value = props.availStock[i].variations[colourThird]
+      colourThreeVal.push(value);
+  }
+
+  console.log(colourThreeVal);
+
+
+  // let FiveValFirst = props.availStock[0].variations[colourFirst];
+  // let FiveValSecond = props.availStock[0].variations[colourSecond];
+  // let FiveValThird = props.availStock[0].variations[colourThird];
 
     let editFormValues = {
         productName: props.productName,
@@ -22,6 +56,22 @@ const UpdateForm = (props) => {
         colourOne: key[0],
         colourTwo: key[1],
         colourThree: key[2],
+
+        FiveValOne: colourOneVal[0],
+        FiveValTwo: colourTwoVal[0],
+        FiveValThree: colourThreeVal[0],
+
+        SixValOne: colourOneVal[1],
+        SixValTwo: colourTwoVal[1],
+        SixValThree: colourThreeVal[1],
+
+        SevenValOne: colourOneVal[2],
+        SevenValTwo: colourTwoVal[2],
+        SevenValThree: colourThreeVal[2],
+
+        EightValOne: colourOneVal[3],
+        EightValTwo: colourTwoVal[3],
+        EightValThree: colourThreeVal[3],
        
    
       };
@@ -82,24 +132,24 @@ const UpdateForm = (props) => {
                     <div className='col-One'>
                     <h4>Item Information</h4>
                             
-                                <input type="text" placeholder='Product Name'  defaultValue={props.productName} name="productName"/>
+                                <input type="text" placeholder='Product Name'  defaultValue={props.productName} name="productName" onChange={updateValues}/>
                             
 
                          
-                                <input type="text" placeholder='Collection name'  defaultValue={props.productCollection} name="productCollection"/>
+                                <input type="text" placeholder='Collection name'  defaultValue={props.productCollection} name="productCollection" onChange={updateValues}/>
                          
 
                            
-                                <textarea placeholder='Description' defaultValue={props.productDescription} name="productDescription"/>
+                                <textarea placeholder='Description' defaultValue={props.productDescription} name="productDescription" onChange={updateValues}/>
                            
 
 
                          
-                                <input type="number" defaultValue={props.productPrice} name="productPrice" placeholder='Price' className ="half one"/>
+                                <input type="number" defaultValue={props.productPrice} name="productPrice" placeholder='Price' className ="half one" onChange={updateValues}/>
                           
-                                <input type="number" name="productDiscount" placeholder='Discount' className ="half one" defaultValue={props.productDiscount}/>
+                                <input type="number" name="productDiscount" placeholder='Discount' className ="half one" defaultValue={props.productDiscount} onChange={updateValues}/>
                       
-                                <input type="number" placeholder='Rating' className ="half" defaultValue={props.productRating} name="productRating"/>
+                                <input type="number" placeholder='Rating' className ="half" defaultValue={props.productRating} name="productRating" onChange={updateValues}/>
                           
 
                           
@@ -109,37 +159,37 @@ const UpdateForm = (props) => {
 
                             <h5 className='option-label'>Colors</h5>
                             <div className='optionList'>
-                                <input className='color-option'  defaultValue={key[0]} type="text" name="skate-color-1"/>
-                                <input className='color-option' defaultValue={key[1]}  type="text" name="skate-color-2"/>
-                                <input className='color-option' defaultValue={key[2]}  type="text" name="skate-color-3"/>
+                                <input className='color-option'  defaultValue={key[0]} type="text" name="colourOne" onChange={updateValues}/>
+                                <input className='color-option' defaultValue={key[1]}  type="text" name="colourTwo" onChange={updateValues}/>
+                                <input className='color-option' defaultValue={key[2]}  type="text" name="colourThree" onChange={updateValues}/>
                           </div>
 
                                 <h5 className='option-label'>Size 5</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
+                                <input className='qty-option' type="Number" name="FiveValOne" defaultValue={colourOneVal[0]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="FiveValTwo" defaultValue={colourTwoVal[0]} onChange={updateValues} />
+                                <input className='qty-option' type="Number" name="FiveValThree" defaultValue={colourThreeVal[0]} onChange={updateValues} />
                                 </div>
 
                                 <h5 className='option-label'>Size 6</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
+                                <input className='qty-option' type="Number" name="SixValOne"  defaultValue={colourOneVal[1]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="SixValTwo"  defaultValue={colourTwoVal[1]} onChange={updateValues} />
+                                <input className='qty-option' type="Number" name="SixValThree" defaultValue={colourThreeVal[1]} onChange={updateValues}/>
                          </div>
 
                                 <h5 className='option-label'>Size 7</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
+                                <input className='qty-option' type="Number" name="SevenValOne"  defaultValue={colourOneVal[2]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="SevenValTwo"  defaultValue={colourTwoVal[2]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="SevenValThree" defaultValue={colourThreeVal[2]} onChange={updateValues}/>
                                 </div>
 
                                 <h5 className='option-label'>Size 8</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="skate-qty-1"/>
-                                <input className='qty-option' type="Number" name="skate-qty-2"/>
-                                <input className='qty-option' type="Number" name="skate-qty-3"/>
+                                <input className='qty-option' type="Number" name="EightValOne"  defaultValue={colourOneVal[3]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="EightValTwo"  defaultValue={colourTwoVal[3]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="EightValThree" defaultValue={colourThreeVal[3]} onChange={updateValues}/>
                                 </div>
                          
 

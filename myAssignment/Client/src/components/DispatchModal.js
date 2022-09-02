@@ -38,7 +38,7 @@ const DispatchModal = (props) => {
                 <img src={deleteScrib} className="deleteScrib"/>
                 <h1>Signed, sealed, <div className='sure'>deliver?</div></h1>
                 <h3>Are you sure this order is ready to be dispatched?</h3>
-                <button className='primary-btn' onClick={deleteVet}>Dispatch Oredr</button>
+                <button className='primary-btn' onClick={deleteVet}>Dispatch Order</button>
                 <button className='secondary-btn' onClick={closeModal}>Cancel</button>
             </div>
             

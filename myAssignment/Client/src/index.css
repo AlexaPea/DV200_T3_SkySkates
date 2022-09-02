@@ -1883,3 +1883,80 @@ font-weight: 600;
 .deleteProductModal.dispatchCont .closeDeleteProd:hover{
   color: #F9A03F;
 }
+
+.deleteProductModal.check{
+  width: 700px;
+  margin-left: 240px;
+  margin-top: 70px;
+  height: 550px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.deleteProductModal.check .primary-btn{
+
+  margin-top: 15px;
+}
+
+.deleteProductModal.check .adress{
+  width: 50%;
+  float: left
+}
+
+.deleteProductModal.check .adress h2{
+ text-align: left;
+ padding-left: 25px;
+ font-size: 16px;
+ font-weight: 600;
+ margin-top: 0;
+}
+
+.buy-form h3{
+  text-align: left;
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 0px;
+ }
+
+.deleteProductModal.check .adress input{
+  border: none;
+  padding: 10px;
+  width: 80%;
+  margin: 10px;
+ }
+
+ 
+ .deleteProductModal.check .order{
+  width: 190px;
+  margin-right: 0px;
+  font-weight: 800;
+ }
+
+ .adress h6{
+  margin: 0;
+  text-align: left;
+  margin-left: 25px;
+  padding: 0;
+  margin-bottom: -7px;
+  font-weight: 600;
+ }
+
+ .deleteProductModal.check .closeDeleteProd{
+  margin-left: 270px;
+  cursor: pointer;
+ }
+
+ 
+ .deleteProductModal.check .closeDeleteProd:hover{
+  color: #F9A03F;
+ }
+
+
+ .deleteProductModal.check .deleteScrib{
+  width: 600px;
+  margin-left: -360px;
+  margin-top: 5px;
+ }
+
+

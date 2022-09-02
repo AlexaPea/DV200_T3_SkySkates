@@ -198,18 +198,6 @@ const addOrder = (e) => {
 
             <UilArrowLeft onClick={backHome} className="backArrow" size="45"/>
 
-{/* <div className='order-success'>
-      <div className='opacityBg'>
-              <div className='success-content'>
-                <h1>Whoop Whoop!</h1>
-                <h3>Your order has been placed!</h3>
-                <img src={success} className="successImg"/>
-                <button className='primary-btn'>Keep Shopping!</button>
-                <button>Go to cart</button>
-
-              </div>
-        </div>
-  </div> */}
           
 
 <div className='productInfo-Head'>
