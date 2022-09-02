@@ -11,11 +11,11 @@ import DeleteProductModal from './DeleteProductModal';
 
 const AdminProductCard = (props) => {
 
-//==================================================
-//delete product
-    //delete function
+    
+let URL = 'http://localhost:5000/productImages/' + props.image;
+console.log(URL);
 
-    console.log(props.availStock);
+//==================================================
     const [deleteProductMod, setDeleteProductMod] = useState(); 
     const deleteProduct = () => {
         // console.log(props.userId);
@@ -77,7 +77,7 @@ const AdminProductCard = (props) => {
                     </div> */}
                     <UilTrashAlt className="bin" onClick={deleteProduct}/>
                     <div className='productImg'>
-                        <img src={shoeOne} className="cardShoe"/>
+                        <img src={URL} className="cardShoe"/>
                     </div>
                     <div className='shoeName'>
                         <h4>{props.productName}</h4>

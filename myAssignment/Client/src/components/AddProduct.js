@@ -72,7 +72,6 @@ const addProduct = (e) => {
         productDiscount: +formValues['productDiscount'],
         productDescription: formValues['productDescription'],
         productRating: +formValues['productRating'],
-        productName: formValues['productName'],
         inStock: '',
         availStock: [
           { 
@@ -109,7 +108,7 @@ const addProduct = (e) => {
           }
 
 
-        ],
+        ]
       
        
   }
@@ -118,7 +117,7 @@ const addProduct = (e) => {
   payloadData.append("information", JSON.stringify(payload));
   payloadData.append("image", productImage);
 
-  Axios.post('http://localhost:5000/api/newproduct', payloadData)
+  Axios.post('http://localhost:5000/api/addproduct', payloadData)
   .then((res)=> {
     if(res){
       console.log("Item Added"); 

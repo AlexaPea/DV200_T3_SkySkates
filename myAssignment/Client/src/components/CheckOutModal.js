@@ -47,7 +47,7 @@ const CheckOutModal = (props) => {
           .then((res)=> {
               if(res){
               console.log("Order Successful");
-             
+            //   props.rerender();
                 setModal(<Sucess upRender={props.rerender} rerender={setModal}/>)
         
 
@@ -59,7 +59,7 @@ const CheckOutModal = (props) => {
               console.log("Error is:" + error);
           });
 
-          localStorage.clear();
+         
 
           
 

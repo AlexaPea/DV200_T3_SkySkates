@@ -22,7 +22,7 @@ const productSchema = mongoose.Schema({
     },
     image:{
         type: String,
-        required: true
+        // required: true
     },
     productRating:{
         type: Number,
@@ -30,7 +30,7 @@ const productSchema = mongoose.Schema({
     },
     availStock:[{
         size: { type: Number,required: true},
-        variations: { 
+        variations: {            
          
         }
     }],

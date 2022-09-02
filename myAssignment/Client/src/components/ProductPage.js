@@ -115,6 +115,7 @@ useEffect(()=>{
             
         })
         let URL = 'http://localhost:5000/productImages/' + data.image;
+        console.log(URL);
         setImgUrl(URL);
     })
 }, []);

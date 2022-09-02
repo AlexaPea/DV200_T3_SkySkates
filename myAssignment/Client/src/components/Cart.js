@@ -80,7 +80,7 @@ useEffect(()=>{
       // console.log(productData);
       // console.log(cartData);
       let displayData = JSON.parse(cartData);
-    console.log(displayData);
+    // console.log(displayData);
       
       let renderOrders = displayData.map((item, index) => <Orders id={index} productColour={item.productColour} quantity={item.quantity} price={item.price}  editRender={setUpdateOrders}/>)
       setOrders(renderOrders);
@@ -114,6 +114,7 @@ useEffect(()=>{
       setFinal("0");
 
     }
+  
 
   },[updateOrders]);
 

@@ -20,6 +20,7 @@ const Sucess = (props) => {
     navigate('/Home');
 
         props.rerender();
+        localStorage.clear();
       }
       
 
@@ -28,7 +29,7 @@ const Sucess = (props) => {
 
     return (
         <div className='pop-up delete'>
-            <div className='deleteProductModal'>
+            <div className='deleteProductModal success'>
                 <button onClick={closeModal} className='closeDeleteProd'><UilTimes size="35"/></button>
                 <img src={deleteScrib} className="deleteScrib"/>
                 <h1>Whoop <div className='sure'>Whoop!</div></h1>

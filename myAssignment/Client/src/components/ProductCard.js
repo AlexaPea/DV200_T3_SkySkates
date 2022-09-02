@@ -3,10 +3,15 @@ import shoeOne from "../Assets/Products/ShoeOne.jpg";
 import cart from "../Assets/Images/Cart.png";
 import { useNavigate } from 'react-router-dom';
 
+
 const ProductCard = (props) => {
 
     //=======================================================
 //individual product
+
+let URL = 'http://localhost:5000/productImages/' + props.image;
+console.log(URL);
+
 
 let navigate = useNavigate();
 
@@ -30,7 +35,7 @@ if(props.discount > 0){
                         </div>
                     </div>
                     <div className='productImg'>
-                        <img src={shoeOne} className="cardShoe"/>
+                        <img src={URL} className="cardShoe"/>
                     </div>
                     <div className='shoeName'>
                         <h4>{props.productName}</h4>

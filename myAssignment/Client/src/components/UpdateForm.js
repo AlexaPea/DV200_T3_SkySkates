@@ -53,26 +53,42 @@ const UpdateForm = (props) => {
         productDescription: props.productDescription,
         productPrice: props.productPrice,
         productRating: props.productRating,
-        colourOne: key[0],
-        colourTwo: key[1],
-        colourThree: key[2],
+        availStock:[
+          { 
+            size: 5,
+            variations:{
+              [colourFirst]: colourOneVal[0],
+              [colourSecond]: colourTwoVal[0],
+              [colourThird]:  colourThreeVal[0]
+            }
+          },
+          { 
+            size: 6,
+            variations:{
+              [colourFirst]: colourOneVal[1],
+              [colourSecond]: colourTwoVal[1],
+              [colourThird]:  colourThreeVal[1]
+            }
+          },
+          { 
+            size: 7,
+            variations:{
+              [colourFirst]: colourOneVal[2],
+              [colourSecond]: colourTwoVal[2],
+              [colourThird]:  colourThreeVal[2]
+            }
+          },
+          { 
+            size: 8,
+            variations:{
+              [colourFirst]: colourOneVal[3],
+              [colourSecond]: colourTwoVal[3],
+              [colourThird]:  colourThreeVal[3]
+            }
+          },
 
-        FiveValOne: colourOneVal[0],
-        FiveValTwo: colourTwoVal[0],
-        FiveValThree: colourThreeVal[0],
-
-        SixValOne: colourOneVal[1],
-        SixValTwo: colourTwoVal[1],
-        SixValThree: colourThreeVal[1],
-
-        SevenValOne: colourOneVal[2],
-        SevenValTwo: colourTwoVal[2],
-        SevenValThree: colourThreeVal[2],
-
-        EightValOne: colourOneVal[3],
-        EightValTwo: colourTwoVal[3],
-        EightValThree: colourThreeVal[3],
-       
+        ]
+              
    
       };
 
@@ -159,9 +175,9 @@ const UpdateForm = (props) => {
 
                             <h5 className='option-label'>Colors</h5>
                             <div className='optionList'>
-                                <input className='color-option'  defaultValue={key[0]} type="text" name="colourOne" onChange={updateValues}/>
-                                <input className='color-option' defaultValue={key[1]}  type="text" name="colourTwo" onChange={updateValues}/>
-                                <input className='color-option' defaultValue={key[2]}  type="text" name="colourThree" onChange={updateValues}/>
+                                <input className='color-option'  defaultValue={key[0]} type="text" name="colourFirst" onChange={updateValues}/>
+                                <input className='color-option' defaultValue={key[1]}  type="text" name="colourSecond" onChange={updateValues}/>
+                                <input className='color-option' defaultValue={key[2]}  type="text" name="colourThird" onChange={updateValues}/>
                           </div>
 
                                 <h5 className='option-label'>Size 5</h5>
