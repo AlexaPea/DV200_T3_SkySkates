@@ -7,8 +7,11 @@ import { Axios } from 'axios';
 const UpdateForm = (props) => {
 
   // console.log(this.props);
-  console.log(props.availStock);
   
+  var key = Object.keys(props.availStock[0].variations);
+  console.log(key);
+  let colourFirst = key[0];
+  console.log(props.availStock[0].variations.colourFirst);
 
     let editFormValues = {
         productName: props.productName,
@@ -16,7 +19,9 @@ const UpdateForm = (props) => {
         productDescription: props.productDescription,
         productPrice: props.productPrice,
         productRating: props.productRating,
-        veganFriendly: props.veganFriendly,
+        colourOne: key[0],
+        colourTwo: key[1],
+        colourThree: key[2],
        
    
       };
@@ -104,9 +109,9 @@ const UpdateForm = (props) => {
 
                             <h5 className='option-label'>Colors</h5>
                             <div className='optionList'>
-                                <input className='color-option' type="text" name="skate-color-1"/>
-                                <input className='color-option' type="text" name="skate-color-2"/>
-                                <input className='color-option' type="text" name="skate-color-3"/>
+                                <input className='color-option'  defaultValue={key[0]} type="text" name="skate-color-1"/>
+                                <input className='color-option' defaultValue={key[1]}  type="text" name="skate-color-2"/>
+                                <input className='color-option' defaultValue={key[2]}  type="text" name="skate-color-3"/>
                           </div>
 
                                 <h5 className='option-label'>Size 5</h5>

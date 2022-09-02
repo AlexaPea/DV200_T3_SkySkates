@@ -15,6 +15,7 @@ const AdminProductCard = (props) => {
 //delete product
     //delete function
 
+    console.log(props.availStock);
     const [deleteProductMod, setDeleteProductMod] = useState(); 
     const deleteProduct = () => {
         // console.log(props.userId);
@@ -24,21 +25,6 @@ const AdminProductCard = (props) => {
         //  props.rerender();
       }
     
-      //   if(window.confirm("Are you sure you want to delete: " + props.productName) === true){
-      //     //console.log("deleted item");
-    
-      //     Axios.delete('http://localhost:5000/api/deleteproduct/' + props.productId)
-      //     .then((res) => {
-      //       if(res){
-      //         console.log("Deleted: " + props.productName);
-      //         props.editRender(true);
-      //       }
-          
-      //     })
-      //     .catch(function (error) { console.log(error)});  
-      //   }
-      // }
-
 
 //==================================================================
   //edit functionality
@@ -60,6 +46,7 @@ const AdminProductCard = (props) => {
       productDescription = {props.productDescription}
       productRating = {props.productRating}
       veganFriendly = {props.veganFriendly}
+      availStock = {props.availStock}
       // Five-One = {props.valOne}
     />)
 
