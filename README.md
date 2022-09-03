@@ -20,7 +20,7 @@
 <p align="center">
 
   <a href="https://github.com/AlexaPea/DV200_T3_SkySkates">
-    <img src="myAssignment/Client/src/Assets/Images/headerImgO.png" alt="Header Image" width="140" height="140">
+    <img src="myAssignment/Client/src/Assets/Images/headerImgO.png" alt="Header Image" width="200">
   </a>
   
   <h3 align="center">SKY SKATES</h3>
@@ -122,7 +122,7 @@ Run the following in the command-line to install all the required dependencies:
 ## Features and Functionality
 
 <!-- note how you can use your gitHub link. Just make a path to your assets folder -->
-![image2](DV200_T3_SkySkates/myAssignment/Client/src/Assets/MockUps/mockUpFour.png)
+![image2](myAssignment/Client/src/Assets/MockUps/mockUpFour.png)
 
 
 ### Easy access to the top roller skates on the market! 
@@ -160,20 +160,20 @@ The `Conceptual Process` is the set of actions, activities and research that was
 In order to begin my website ideation process, I first needed to choose a product that I would base my ecommerce website on. I chose roller skates as these would allow for a mordern, youthful and energetic approach to the websites design.
 
 
-![image5](DV200_T3_SkySkates/src/Images/Ideation/concept.png)
+<!-- ![image5](DV200_T3_SkySkates/src/Images/Ideation/concept.png) -->
 <br>
 <!-- ![image6][image6] -->
 
 ### Wireframes
 Once I had a clear concept for the website I wanted to achieve, I began creating wireframes.
 
-![image7](DV200_T3_SkySkates/src/Images/Ideation/wireframes.png)
+<!-- ![image7](DV200_T3_SkySkates/src/Images/Ideation/wireframes.png) -->
 
 ### Custom UI
 I then gained UI and branding inspiration using Pinterest, Behance and Dribble. I found myself gravitating to energetic, playful yet clean designs which I felt would compliment the association to roller skates and create memorable branding for the website.
 
 
-![image8](DV200_T3_SkySkates/src/Images/Ideation/process.png)
+<!-- ![image8](DV200_T3_SkySkates/src/Images/Ideation/process.png) -->
 
 <!-- DEVELOPMENT PROCESS -->
 ## Development Process
@@ -239,9 +239,9 @@ What aspects of this final build contribute to the `Above And Beyond` Component 
 
 ### Mockups
 
-![image9](DV200_T3_SkySkates/myAssignment/Client/src/Assets/MockUps/mockUpOne.png)
+![image9](myAssignment/Client/src/Assets/MockUps/mockUpOne.png)
 <br>
-![image10](DV200_T3_SkySkates/myAssignment/Client/src/Assets/MockUps/mockUpTwo.png)
+![image10](myAssignment/Client/src/Assets/MockUps/mockUpTwo.png)
 
 <!-- VIDEO DEMONSTRATION -->
 ### Video Demonstration
