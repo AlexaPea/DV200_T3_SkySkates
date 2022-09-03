@@ -3,24 +3,22 @@ import Navigation from './Navigation';
 import Helmet from "react-helmet";
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import headerImg from '../Assets/Images/headerImg.png';
+import headerImg from '../Assets/Images/headerImgO.png';
 import scribble from '../Assets/Images/headerScribble.png';
 import scribble2 from '../Assets/Images/scribble2.png';
 import scribble3 from '../Assets/Images/scribble3.png';
 import video from '../Assets/Video/ManSkateboarding.mp4';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import shoeOne from "../Assets/Products/ShoeOne.jpg";
-import shoeTwo from "../Assets/Products/ShoeTwo.jpg";
-import shoeThree from "../Assets/Products/ShoeThree.jpg";
 import skateGirl from "../Assets/Images/skateGirl.jpg";
-import pattern from "../Assets/Images/pattern2.png";
-import shoes from "../Assets/Images/shoes.jpg";
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import Logo from '../Assets/Images/scribble2.png';
 import Axios from 'axios';
 import { Fade} from "react-awesome-reveal";
-import SliderItem from './SliderItem'
+import SliderItem from './SliderItem';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 
 // import ReactFullpage from '@fullpage/react-fullpage';
 
@@ -99,6 +97,25 @@ console.log(newArray);
 
 },[updateProducts]);
 
+//============================
+//emailer stuff
+
+
+const boxVariant = {
+  visible: { opacity: 1,  transition: { duration: 0.9 } },
+  hidden: { opacity: 0, }
+}
+
+const control = useAnimation();
+const [ref, inView] = useInView();
+
+useEffect(() => {
+  if (inView) {
+    control.start("visible");
+  } else {
+    control.start("hidden");
+  }
+}, [control, inView]);
 
 
 
@@ -121,17 +138,19 @@ console.log(newArray);
              
 
 
-         <Fade direction='up' casecade triggerOnce='true' duration={2000}>
+       
                       <div className='first-header original'>
                           <h1>LET'S GET <div className="physical">PHYSICAL.</div></h1>
                           <div className='headerImg'>
                               <img src={headerImg}></img>
                           </div>
                       </div>
-              </Fade>       
+                
            
-                      <Fade direction='up' casecade triggerOnce='true'>
-                        <div className='second-header'>
+                     
+                        <div className='second-header'
+               
+                  >
                             <video autoPlay loop muted playsInline className='backVideo'>
                                 <source src={video}/>
                             </video>
@@ -140,22 +159,22 @@ console.log(newArray);
                               <h1 class="text2">#GetShopping</h1>
                               <img className='second-scribble' src={scribble2}/>
                             </div>
-                        </div>
-                      </Fade> 
+                      </div>
+                  
                      
 
                       
-                      <Fade direction='up' casecade triggerOnce='true'>
+                     
                         <div className='third-header'>
                             <Carousel>
                                     {products}
                             </Carousel> 
                         </div>
-                      </Fade>
+                   
 
                     
 
-                      <Fade direction='up' casecade triggerOnce='true'>
+                     
                         <div className='info-header'>
 
                             <div className='content-img'>
@@ -170,22 +189,24 @@ console.log(newArray);
                             </div>
 
                         </div>
-                      </Fade>
+                   
 
              
                  
-                      <Fade direction='up' casecade triggerOnce='true'>
-                          <div className='fourth-header'>
-                            <form>
-                                  <h1>Pssst, hey, you <br/> (yeah, you)</h1>
-                                  <p>Want in on new arrivals, exclusive collabs, sales and more? <br/> Well, you know what to do.</p>
-                                  <input type="text" placeholder='Your email, please'></input>
-                                  <input type="submit"></input>
-                                  <br/>
-                                  <small>To see how we may use your information, take a look at our privacy policiy.</small>        
-                              </form> 
-                          </div>
-                      </Fade>
+                     
+                      <div className='fourth-header'>
+                    <form  action="/submit" class="contact-form">
+                          <h1>Pssst, hey, you <br/> (yeah, you)</h1>
+                          <p>Want in on new arrivals, exclusive collabs, sales and more? <br/> Well, you know what to do.</p>
+                          <input type="text" name="userEmail" id="userEmail" placeholder='Your email, please'></input>
+                          <input type="submit" id="send-btn" value="Subscribe"></input>
+                          <br/>
+                          <small>To see how we may use your information, take a look at our privacy policiy.</small>        
+                      </form> 
+                  </div>
+
+                  
+                      
                     
                      
           

@@ -11,10 +11,11 @@ import Axios from 'axios';
 import { UilPlus } from '@iconscout/react-unicons';
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import AddProduct from './AddProduct';
-import guySkates from '../Assets/Images/guySkates.png';
+import guySkates from '../Assets/Images/guySkatesO.png';
 import orderCircle from '../Assets/Images/order-circle.png';
 import { UilTruck } from '@iconscout/react-unicons'
 import ProcessOrder from './ProcessOrder';
+import { motion, useAnimation } from "framer-motion";
 
 
 const Admin = (props) => {
@@ -118,7 +119,7 @@ useEffect(()=>{
                 <div className='admin-text'>
                 <h1>Hey Boss!</h1>
                 <h3>Need to make some changes, make space for the new and improved? We can help!</h3>
-                <a href='#products'><button className='primary-btn'>Go To Products</button></a>
+                <a href='#products'><motion.button whileHover={{ scale: 1.05 }} className='primary-btn'>Go To Products</motion.button></a>
                 </div>
                 
             </div>

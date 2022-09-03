@@ -10,6 +10,7 @@ import ProductPage from './components/ProductPage';
 import Cart from './components/Cart';
 import Login from './components/Login';
 import Register from './components/Register';
+// import AnimatedSwitch from 'react-router-transition';
 
 
 function App() {
@@ -17,6 +18,12 @@ function App() {
     <div className="App">
 
       <Routes>
+      {/* <AnimatedSwitch
+      atEnter={{ opacity: 0 }}
+      atLeave={{ opacity: 0 }}
+      atActive={{ opacity: 1 }}
+      className="switch-wrapper"
+    > */}
         <Route path='/' element = {<Login/>}/>
         <Route path='/Home' element = {<Home/>}/>
         <Route path='/Shop' element = {<Shop/>}/>
@@ -24,6 +31,7 @@ function App() {
         <Route path='/Cart' element = {<Cart/>}/>
         <Route path='/ProductPage' element = {<ProductPage/>}/>
         <Route path='/Register' element = {<Register/>}/>
+        {/* </AnimatedSwitch> */}
       </Routes>
    
     </div>

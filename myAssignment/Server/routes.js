@@ -65,51 +65,6 @@ router.post('/api/addproduct', UploadProductImage.single('image') , (req, res) =
 
 });
 
-//Add product
-//this works
-// router.post('/api/addproduct', (req, res) => {
-
-//     console.log(req.body);
-//     const newProduct = new productSchema({
-//         //calculate key values here and make them variables
-//         productName: req.body.productName,
-//         productPrice: req.body.productPrice,
-//         productDiscount:  req.body.productDiscount,
-//         productCollection:  req.body.productCollection,
-//         productDescription:  req.body.productDescription,
-//         productRating:  req.body.productRating,
-//         availStock: req.body.availStock
-
-//     });
-
-//     newProduct.save()
-//     .then(item => {
-//         res.json(item);
-//     })
-//     .catch(err => {
-//         res.status(400).json({msg: "There was an error", err: err});
-//     })
-
-// });
-
-//add client
-// router.post('/api/addClient', (req, res) => {
-
-//     const newProduct = new clientSchema({
-//         clientEmail: req.body.clientEmail,
-//         clientPassword: req.body.clientPassword
-//     });
-
-//     newProduct.save()
-//     .then(item => {
-//         res.json(item);
-//     })
-//     .catch(err => {
-//         res.status(400).json({msg: "There was an error", err: err});
-//     })
-
-// });
-
 
 //add order
 router.post('/api/addorder', (req, res) => {
@@ -174,7 +129,6 @@ router.get('/api/oneproduct/:id', async (req, res) =>{
 //update product
 router.patch('/api/updateproduct/:id', async (req,res) => {
     console.log(req.body);
-    // let stock = +req.body.varOne + +req.body.varTwo + +req.body.varThree;
     const findProduct = await productSchema.updateOne(
         {_id:req.params.id},
         {$set: { 
@@ -252,39 +206,7 @@ router.post('/api/verifytoken', async (req,res) =>{
     }
 });
 
-/*Emailer*/
 
-
-const nodemailer = require('nodemailer');
-
-let transporter = nodemailer.createTransport({
-    service: "gmail",
-    secure: true,
-    port: 465,
-    auth:{
-        user: "skyeskates200@gmail.com",
-        pass:"ThisIsForDV200"
-    },
-    tls:{
-        rejectUnauthorized:false
-    }
-})
-
-let mailOptions = {
-    from: "skyeskates200@gmail.com",
-    to: "alexapettitt14@gmail.com",
-    subject:"Welcome to SkyeSkates",
-    text: "Whoop Whoop! You are officially part of the team!"
-}
-
-transporter.sendMail(mailOptions, function(err, success){
-    if(err){
-        console.log(err);
-    }else{
-        console.log("email sent!");
-    }
-
-})
 
 
 

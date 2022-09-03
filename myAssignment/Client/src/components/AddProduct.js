@@ -145,7 +145,7 @@ const addProduct = (e) => {
                     <h4>Item Information</h4>
                     <label className='file-btn'> Upload File <input type="file" hidden onChange={getImage}/></label>
                     <div className='imgPrev'><img id="imgPrev"></img></div>
-                    <p>{imageName}</p> 
+                    <p className='imgName'>{imageName}</p> 
                             
                                 <input type="text" placeholder='Product Name' name="productName" onChange={getValues}/>
                             

@@ -2,7 +2,7 @@ import React from 'react';
 import scribble3 from '../Assets/Images/scribble3.png';
 import { useState, useEffect } from 'react';
 import { UilTimes } from '@iconscout/react-unicons';
-import { Axios } from 'axios';
+import Axios from 'axios';
 
 const UpdateForm = (props) => {
 
@@ -10,15 +10,15 @@ const UpdateForm = (props) => {
   
   var key = Object.keys(props.availStock[0].variations);
   console.log(key);
-  let colourFirst = key[0];
+  let colourOne = key[0];
   let colourSecond = key[1];
   let colourThird = key[2];
-  console.log(props.availStock[0].variations[colourFirst]);
+
 
   //get quantites for first colour
   let colourOneVal=[];
   for(let i = 0; i<(key.length +1 ); i++ ){
-      let value = props.availStock[i].variations[colourFirst]
+      let value = props.availStock[i].variations[colourOne]
       colourOneVal.push(value);
   }
 
@@ -47,70 +47,118 @@ const UpdateForm = (props) => {
   // let FiveValSecond = props.availStock[0].variations[colourSecond];
   // let FiveValThird = props.availStock[0].variations[colourThird];
 
-    let editFormValues = {
+  
+  // const payloadData = new FormData();
+console.log(props.availStock);
+//original
+    let firstVals = {
         productName: props.productName,
         productCollection: props.productCollection,
         productDescription: props.productDescription,
         productPrice: props.productPrice,
         productRating: props.productRating,
-        availStock:[
-          { 
-            size: 5,
-            variations:{
-              [colourFirst]: colourOneVal[0],
-              [colourSecond]: colourTwoVal[0],
-              [colourThird]:  colourThreeVal[0]
-            }
-          },
-          { 
-            size: 6,
-            variations:{
-              [colourFirst]: colourOneVal[1],
-              [colourSecond]: colourTwoVal[1],
-              [colourThird]:  colourThreeVal[1]
-            }
-          },
-          { 
-            size: 7,
-            variations:{
-              [colourFirst]: colourOneVal[2],
-              [colourSecond]: colourTwoVal[2],
-              [colourThird]:  colourThreeVal[2]
-            }
-          },
-          { 
-            size: 8,
-            variations:{
-              [colourFirst]: colourOneVal[3],
-              [colourSecond]: colourTwoVal[3],
-              [colourThird]:  colourThreeVal[3]
-            }
-          },
+        productDiscount: props.productDiscount,
 
-        ]
+        availStock: props.availStock
               
    
       };
 
-    const [editValues, setEditValues] = useState(editFormValues);
+      console.log(firstVals);
 
-    const updateValues = (e) => {
-      const {name, value} = e.target;
-      setEditValues({...editValues, [name]: value});
-      // console.log(editValues);
+  //   const [editValues, setEditValues] = useState(editFormValues);
 
-  }
+  //   const updateValues = (e) => {
+  //     const {name, value} = e.target;
+  //     setEditValues({...editValues, [name]: value});
+  //     // console.log(editValues);
+
+  // }
+
+  //new attempt
+  
+  const [formValues, setFormValues] = useState(firstVals);
+
+ 
+const updateValues = (e) =>{
+  const { name, value } = e.target;
+  setFormValues({ ...formValues, [name]: value });
+}
+
 
   const updateProd = (e) => {
     e.preventDefault();
-    let productId = props.id;
-    let payload = editValues; 
+
+
+    const payloadData = new FormData();
+
+    
+
+    // var inStock = +formValues[''] + +formValues[''] + +formValues[''];
+
+ 
+    console.log(formValues['colourThree']);
+    console.log(formValues['Five-valOne']);
+    let stock = [
+      { 
+        size: 5,
+        variations:{
+          [formValues['colourOne']]: +formValues['Five-ValOne'],
+          [formValues['colourTwo']]: +formValues['Five-ValTwo'],
+          [formValues['colourThree']]: +formValues['Five-ValThree']
+        }
+      },
+      { 
+        size: 6,
+        variations:{
+          [formValues['colourOne']]: +formValues['Six-ValOne'],
+         [formValues['colourTwo']]: +formValues['Six-ValTwo'],
+          [formValues['colourThree']]: +formValues['Six-ValThree']
+        }
+      },
+      { 
+        size: 7,
+        variations:{
+          [formValues['colourOne']]: +formValues['Seven-ValOne'],
+          [formValues['colourTwo']]: +formValues['Seven-ValTwo'],
+          [formValues['colourThree']]: +formValues['Seven-ValThree']
+        }
+      },
+      { 
+        size: 8,
+        variations:{
+          [formValues['colourOne']]: +formValues['Eight-ValOne'],
+          [formValues['colourTwo']]: +formValues['Eight-ValTwo'],
+          [formValues['colourThree']]: +formValues['Eight-ValThree']
+        }
+      }
+
+
+    ];
+  
+console.log(stock);
+
+    let payload = {
+        productName: formValues['productName'],
+        productPrice: +formValues['productPrice'],
+        productCollection: formValues['productCollection'],
+        productDiscount: +formValues['productDiscount'],
+        productDescription: formValues['productDescription'],
+        productRating: +formValues['productRating'],
+        inStock: '',
+        availStock: stock
+       
+  }
+
+    let productId = props.productId;
+    // let payload = editValues; 
     console.log(payload);
+    console.log(productId);
 
     Axios.patch('http://localhost:5000/api/updateproduct/' + productId, payload)
     .then((res)=> {
         if(res){
-        console.log("Item Upadted"); 
+        console.log("Item Updated"); 
         props.close();
         props.editRender(true);
         }
@@ -175,37 +223,37 @@ const UpdateForm = (props) => {
 
                             <h5 className='option-label'>Colors</h5>
                             <div className='optionList'>
-                                <input className='color-option'  defaultValue={key[0]} type="text" name="colourFirst" onChange={updateValues}/>
-                                <input className='color-option' defaultValue={key[1]}  type="text" name="colourSecond" onChange={updateValues}/>
-                                <input className='color-option' defaultValue={key[2]}  type="text" name="colourThird" onChange={updateValues}/>
+                                <input className='color-option'  defaultValue={key[0]} type="text" name="colourOne" onBlur={updateValues}/>
+                                <input className='color-option' defaultValue={key[1]}  type="text" name="colourTwo" onBlur={updateValues}/>
+                                <input className='color-option' defaultValue={key[2]}  type="text" name="colourThree" onBlur={updateValues}/>
                           </div>
 
                                 <h5 className='option-label'>Size 5</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="FiveValOne" defaultValue={colourOneVal[0]} onChange={updateValues}/>
-                                <input className='qty-option' type="Number" name="FiveValTwo" defaultValue={colourTwoVal[0]} onChange={updateValues} />
-                                <input className='qty-option' type="Number" name="FiveValThree" defaultValue={colourThreeVal[0]} onChange={updateValues} />
+                                <input className='qty-option' type="Number" name="Five-ValOne" defaultValue={+colourOneVal[0]} onBlur={updateValues}/>
+                                <input className='qty-option' type="Number" name="Five-ValTwo" defaultValue={+colourTwoVal[0]} onBlur={updateValues} />
+                                <input className='qty-option' type="Number" name="Five-ValThree" defaultValue={+colourThreeVal[0]} onBlur={updateValues} />
                                 </div>
 
                                 <h5 className='option-label'>Size 6</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="SixValOne"  defaultValue={colourOneVal[1]} onChange={updateValues}/>
-                                <input className='qty-option' type="Number" name="SixValTwo"  defaultValue={colourTwoVal[1]} onChange={updateValues} />
-                                <input className='qty-option' type="Number" name="SixValThree" defaultValue={colourThreeVal[1]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="Six-ValOne"  defaultValue={+colourOneVal[1]} onBlur={updateValues}/>
+                                <input className='qty-option' type="Number" name="Six-ValTwo"  defaultValue={+colourTwoVal[1]} onBlur={updateValues} />
+                                <input className='qty-option' type="Number" name="Six-ValThree" defaultValue={+colourThreeVal[1]} onBlur={updateValues}/>
                          </div>
 
                                 <h5 className='option-label'>Size 7</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="SevenValOne"  defaultValue={colourOneVal[2]} onChange={updateValues}/>
-                                <input className='qty-option' type="Number" name="SevenValTwo"  defaultValue={colourTwoVal[2]} onChange={updateValues}/>
-                                <input className='qty-option' type="Number" name="SevenValThree" defaultValue={colourThreeVal[2]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="Seven-ValOne"  defaultValue={+colourOneVal[2]} onBlur={updateValues}/>
+                                <input className='qty-option' type="Number" name="Seven-ValTwo"  defaultValue={+colourTwoVal[2]} onBlur={updateValues}/>
+                                <input className='qty-option' type="Number" name="Seven-ValThree" defaultValue={+colourThreeVal[2]} onBlur={updateValues}/>
                                 </div>
 
                                 <h5 className='option-label'>Size 8</h5>
                                 <div className='optionList'>
-                                <input className='qty-option' type="Number" name="EightValOne"  defaultValue={colourOneVal[3]} onChange={updateValues}/>
-                                <input className='qty-option' type="Number" name="EightValTwo"  defaultValue={colourTwoVal[3]} onChange={updateValues}/>
-                                <input className='qty-option' type="Number" name="EightValThree" defaultValue={colourThreeVal[3]} onChange={updateValues}/>
+                                <input className='qty-option' type="Number" name="Eight-ValOne"  defaultValue={+colourOneVal[3]} onBlur={updateValues}/>
+                                <input className='qty-option' type="Number" name="Eight-ValTwo"  defaultValue={+colourTwoVal[3]} onBlur={updateValues}/>
+                                <input className='qty-option' type="Number" name="Eight-ValThree" defaultValue={+colourThreeVal[3]} onBlur={updateValues}/>
                                 </div>
                          
 

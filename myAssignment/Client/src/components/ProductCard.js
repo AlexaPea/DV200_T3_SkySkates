@@ -2,6 +2,7 @@ import React from 'react';
 import shoeOne from "../Assets/Products/ShoeOne.jpg";
 import cart from "../Assets/Images/Cart.png";
 import { useNavigate } from 'react-router-dom';
+import { motion, useAnimation } from "framer-motion";
 
 
 const ProductCard = (props) => {
@@ -27,7 +28,7 @@ if(props.discount > 0){
 }
 
     return (
-        <div>
+        <motion.div whileHover={{ scale: 1.03 }} >
                 <div className='productCard' onClick={toProduct}>
                     <div className='hoverOption'>
                         <div className='buy'>
@@ -46,7 +47,7 @@ if(props.discount > 0){
                     </div>
                 </div>
             
-        </div>
+        </motion.div>
     );
 };
 

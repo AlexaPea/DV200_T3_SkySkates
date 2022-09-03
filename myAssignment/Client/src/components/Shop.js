@@ -1,15 +1,9 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Helmet from "react-helmet";
-import girlGroup from "../Assets/Images/girlGroup.png";
+import girlGroup from "../Assets/Images/girlGroupO.png";
 import lines1 from "../Assets/Images/lines1.png";
 import lines2 from "../Assets/Images/lines2.png";
-import girls from "../Assets/Images/girls.jpg";
-import shoeOne from "../Assets/Products/ShoeOne.jpg";
-import shoeTwo from "../Assets/Products/ShoeTwo.jpg";
-import shoeThree from "../Assets/Products/ShoeThree.jpg";
-import shoeFour from "../Assets/Products/ShoeFour.jpg";
-import cart from "../Assets/Images/Cart.png";
 import qr from "../Assets/Images/qr.png";
 import underline from "../Assets/Images/underline.png";
 import ProductCard from './ProductCard';
@@ -18,6 +12,7 @@ import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscou
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
+
 
 
 const Shop = () => {

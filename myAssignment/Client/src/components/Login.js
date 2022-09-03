@@ -7,6 +7,8 @@ import Logo from '../Assets/Images/scribble2.png';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { motion, useAnimation } from "framer-motion";
+import UhOh from './UhOh';
 
 
 const Login = (props) => {
@@ -39,6 +41,8 @@ const navigate = useNavigate();
 
 let formVals = ["username", "password"];
 
+   // Handle Modal
+   const [editModal, setEditModal] = useState();
 const [formValues, setFormValues] = useState(formVals);
 
 const getValues = (e) =>{
@@ -66,7 +70,9 @@ const loginUser = (e) => {
           sessionStorage.setItem('user', formValues['username']);
           navigate("/Home");
         }else{
-          alert("Not happening")
+          setEditModal(<UhOh
+            close={setEditModal}
+          />)
         }
       }
     })
@@ -85,9 +91,11 @@ const toRegister = () =>{
 
 
 
+ 
+
     return (
         <div className='loginPage'>
-
+{editModal}
         <Helmet>
             <title>Login</title>
             <link rel="icon" href={Logo}/>
@@ -106,11 +114,11 @@ const toRegister = () =>{
                         <input type="Password" name="password" placeholder='******' onChange={getValues}/>
                     </label>
 
-                    <input type="submit" id='login-submit'></input>
+                    <motion.button  whileHover={{ scale: 1.05 }}  type="submit" id='login-submit'>Log in</motion.button>
 
                 </form>
 
-                <button className='primary-btn' onClick={toRegister}>Register</button>
+
 
             </div>
 

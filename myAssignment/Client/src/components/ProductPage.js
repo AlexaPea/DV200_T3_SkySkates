@@ -40,6 +40,7 @@ let productId = sessionStorage.getItem("productId");
 const [imgUrl, setImgUrl] = useState();
 const [newPrice, setNewPrice] = useState();
 const [showNewPrice, setShowNewPrice] = useState();
+const [avail, setAvail] = useState();
 
 const [productData, setProductData] = useState({
     productName: "",
@@ -64,6 +65,8 @@ const backHome = () =>{
     sessionStorage.clear();
     navigate("/Shop");
 }
+
+//counter
 
 useEffect(()=>{
 
@@ -93,6 +96,27 @@ useEffect(()=>{
           setShowNewPrice("");
         
         }
+
+      console.log(data.availStock);
+        let sumNum =[]
+        for(let i=0; i<4;i++){
+            const values = Object.values(data.availStock[i].variations);
+
+            const sum = values.reduce((accumulator, value) => {
+                return accumulator + value;
+              }, 0);
+              
+
+              sumNum.push(sum);
+              
+        }
+        console.log(sumNum);
+
+        var total = 0;
+        for (var i = 0; i < sumNum.length; i++) {
+            total += sumNum[i] << 0;
+        }
+        setAvail(total);
 
 
         setProductData({
@@ -186,10 +210,11 @@ const addOrder = (e) => {
 
 } 
 
-
-
+useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
     return (
-        <div>
+        <div id="top">
           {addedToCart}
              <Helmet>
                 <title>Product</title>
@@ -285,6 +310,7 @@ const addOrder = (e) => {
                 <h4 className="displayPrice">R {productData.productPrice}</h4>
                 <div className='newPrice'>{showNewPrice}</div>
                 <button type="submit" className='primaryBtn buy'>Add to cart</button>
+                <p className='availableDisplay'>Available Skates: {avail}</p>
                 <br/>
                 <small>size chart</small>
                 <small>product measurements</small>

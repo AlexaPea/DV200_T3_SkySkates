@@ -39,3 +39,37 @@ app.listen(PORT, () => {console.log(`Server started on port: ${PORT}`)});
 
 
 
+/*Emailer*/
+// const multiparty = require("multiparty");
+
+const nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+    service: "gmail",
+    secureConnection: true, 
+    auth:{
+        user: process.env.DB_EMAIL,
+        pass: process.env.DB_PASS
+    },
+    tls:{
+        rejectUnauthorized:false
+    }
+})
+
+
+// let mailOptions = {
+//     from:  process.env.DB_EMAIL,
+//     to: "alexapettitt14@gmail.com",
+//     subject:"Welcome to SkyeSkates",
+//     text: "Whoop Whoop! You are officially part of the team!"
+// }
+
+// transporter.sendMail(mailOptions, function(err, success){
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log("email sent!");
+//     }
+
+
+// })

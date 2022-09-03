@@ -9,11 +9,12 @@ import AddProduct from './AddProduct';
 import DeleteProductModal from './DeleteProductModal';
 
 
+
 const AdminProductCard = (props) => {
 
     
 let URL = 'http://localhost:5000/productImages/' + props.image;
-console.log(URL);
+// console.log(URL);
 
 //==================================================
     const [deleteProductMod, setDeleteProductMod] = useState(); 
@@ -45,7 +46,6 @@ console.log(URL);
       productCollection = {props.productCollection}
       productDescription = {props.productDescription}
       productRating = {props.productRating}
-      veganFriendly = {props.veganFriendly}
       availStock = {props.availStock}
       // Five-One = {props.valOne}
     />)
@@ -59,11 +59,27 @@ console.log(URL);
     var discount = "";
 }
 
+let sumNum =[]
+for(let i=0; i<4;i++){
+    const values = Object.values(props.availStock[i].variations);
+
+    const sum = values.reduce((accumulator, value) => {
+        return accumulator + value;
+      }, 0);
+      
+
+      sumNum.push(sum);
+      
+}
 
 
+var total = 0;
+for (var i = 0; i < sumNum.length; i++) {
+    total += sumNum[i] << 0;
+}
 
     return (
-        <> 
+        <div> 
          {editModal}
          {deleteProductMod}
         <div className='adminCard'>
@@ -83,7 +99,7 @@ console.log(URL);
                         <h4>{props.productName}</h4>
                     </div>
                     <div className='shoeStock'>
-                        <h6>Available Stock: {props.valOne}</h6>
+                        <h6>Available Stock: {total}</h6>
                     </div>
                     <div className='shoePrice'>
                         <h6>R {props.productPrice} {discount}</h6>
@@ -96,7 +112,7 @@ console.log(URL);
         </div>
 
        
-        </>
+        </div>
     );
 };
 

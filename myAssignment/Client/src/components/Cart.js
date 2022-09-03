@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import CheckOutModal from './CheckOutModal'
 import Orders from './Orders';
+import { motion, useAnimation } from "framer-motion";
 
 const Cart = (props) => {
 
@@ -192,7 +193,7 @@ useEffect(()=>{
                 </tr>            
             </table>
 
-            <button onClick={checkout}>Proceed to checkout</button>
+            <motion.button whileHover={{ scale: 1.05 }} onClick={checkout}>Proceed to checkout</motion.button>
 
         </div>
 
