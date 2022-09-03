@@ -20,7 +20,7 @@
 <p align="center">
 
   <a href="https://github.com/AlexaPea/DV200_T3_SkySkates">
-    <img src="DV200_T3_SkySkates/myAssignment/Client/src/Assets/Images/headerImgO.png" alt="Header Image" width="140" height="140">
+    <img src="myAssignment/Client/src/Assets/Images/headerImgO.png" alt="Header Image" width="140" height="140">
   </a>
   
   <h3 align="center">SKY SKATES</h3>
