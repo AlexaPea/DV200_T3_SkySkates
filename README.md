@@ -1,4 +1,4 @@
-# Pokemon
+# Sky Skates
 
 
 
@@ -20,7 +20,7 @@
 <p align="center">
 
   <a href="https://github.com/AlexaPea/DV200_T3_SkySkates">
-    <img src="DV200_T3_SkySkates/src/Images/guySkatesO.png" alt="Header Image" width="140" height="140">
+    <img src="DV200_T3_SkySkates/myAssignment/Client/src/Assets/Images/headerImgO.png" alt="Header Image" width="140" height="140">
   </a>
   
   <h3 align="center">SKY SKATES</h3>
@@ -70,7 +70,7 @@
 <!--PROJECT DESCRIPTION-->
 ## About the Project
 <!-- header image of project -->
-![image1](DV200_T3_SkySkates/src/Images/Ideation/intro.png)
+<!-- ![image1](DV200_T3_SkySkates/src/Images/Ideation/intro.png) -->
 
 ### Project Description
 
@@ -122,7 +122,7 @@ Run the following in the command-line to install all the required dependencies:
 ## Features and Functionality
 
 <!-- note how you can use your gitHub link. Just make a path to your assets folder -->
-![image2](DV200_T3_SkySkates/src/Images/mockups/mockup1.png)
+![image2](DV200_T3_SkySkates/myAssignment/Client/src/Assets/MockUps/mockUpFour.png)
 
 
 ### Easy access to the top roller skates on the market! 
@@ -239,9 +239,9 @@ What aspects of this final build contribute to the `Above And Beyond` Component 
 
 ### Mockups
 
-![image9](DV200_T3_SkySkates/src/Images/mockups/mockup2.png)
+![image9](DV200_T3_SkySkates/myAssignment/Client/src/Assets/MockUps/mockUpOne.png)
 <br>
-![image10](DV200_T3_SkySkates/src/Images/mockups/mockup3.png)
+![image10](DV200_T3_SkySkates/myAssignment/Client/src/Assets/MockUps/mockUpTwo.png)
 
 <!-- VIDEO DEMONSTRATION -->
 ### Video Demonstration
