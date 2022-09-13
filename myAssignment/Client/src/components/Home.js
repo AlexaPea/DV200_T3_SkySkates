@@ -14,7 +14,6 @@ import skateGirl from "../Assets/Images/skateGirl.jpg";
 import { UilFacebookF, UilInstagram, UilWhatsapp, UilTwitter   } from '@iconscout/react-unicons';
 import Logo from '../Assets/Images/scribble2.png';
 import Axios from 'axios';
-import { Fade} from "react-awesome-reveal";
 import SliderItem from './SliderItem';
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";

@@ -122,6 +122,7 @@ const addProduct = (e) => {
     if(res){
       console.log("Item Added"); 
       setRenderProducts(true);
+      props.rerender();
     }
   })
   .catch(function (error) {
